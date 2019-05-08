@@ -84,7 +84,7 @@ public class Player : NetworkBehaviour
     [Command]
     public void CmdHitCastle(int dmg, NetworkInstanceId id)
     {
-        Debug.Log(id);
+        //Debug.Log(id);
         RpcCastle(dmg,id);
     }
 
@@ -152,6 +152,7 @@ public class Player : NetworkBehaviour
         var rotation = new Quaternion();
         rotation.Set(Qx,Qy,Qz,W);
         
+        Debug.Log("Active weapon: "+activeWeapon);
         projectile = weapons[activeWeapon].projectile;
         //var raycastSpot = weapons[activeWeapon].raycastStartSpot;
         var newProjectile = Instantiate(projectile, position, rotation);

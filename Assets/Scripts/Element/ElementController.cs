@@ -1,11 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 
-public class ElementController : NetworkBehaviour {
-    public float[] testing;
+//Now this scrip mainly controls the building functions. The TechManager controls the player's weapons.
+
+[System.Serializable]
+public class TechTree
+{
+    public List<GameObject> defensiveTech = new List<GameObject>();
+    public List<GameObject> aggressiveTech = new List<GameObject>();
+    public GameObject finalTech;
+
+    public int maxDTech;
+    public int maxATech;
+    
+
+}
+
+[System.Serializable]
+public class TechBuilding
+{
+    //public string techType; "A" for aggressive; "D" for defensive
+    public int techNumber; //used to mark the corresponding prefab of the building
+    public int buildingAmount; //to show how many of this building are in the game
+    public int woodNeeded;
+    public int waterNeeded;
+    public int fireNeeded;
+}
+
+public class ElementController : NetworkBehaviour
+{
+    public TechTree techTree;
+    public TechBuilding[] dBuildingList;
+    public TechBuilding[] aBuildingList;
+    
     public Text firstElementUI;
     public Text secondElementUI;
     public Text thirdElementUI;
@@ -41,7 +72,7 @@ public class ElementController : NetworkBehaviour {
     [SerializeField] private int maxElement;
     [SerializeField] private float buildRange;
     [SerializeField]
-    public List<string> elements;
+    public System.Collections.Generic.List<string> elements;
 
     public string UIInformation;
 
@@ -83,7 +114,7 @@ public class ElementController : NetworkBehaviour {
             if (Input.GetKeyDown("b"))
             {
                 //Debug.Log("Build a castle");
-                if(player.transform.position.y<15.1&&player.transform.position.y>15)
+                /* //if(player.transform.position.y<15.1&&player.transform.position.y>15) need improvement
                 {
                     UIInformation = "Hint1";
                     BuildCastle();
@@ -91,8 +122,8 @@ public class ElementController : NetworkBehaviour {
                 else
                 {
                     UIInformation = "Please build on your base!";
-                }
-                
+                }*/
+                BuildCastle();
 
                 //perform building function here
             }
@@ -104,6 +135,13 @@ public class ElementController : NetworkBehaviour {
                 ShiftElement();
                 elements.RemoveAt(elements.Count - 1);
                 Debug.Log("Current element cound: " + elements.Count);
+            }
+            
+            else if (Input.GetKeyDown(KeyCode.C))
+            {
+                elements.Clear();
+                CounterToZero();
+                //Debug.Log("Current element number: "+elements.Count);
             }
 
             else if (Input.GetKeyDown("4"))
@@ -206,7 +244,8 @@ public class ElementController : NetworkBehaviour {
     
     private void BuildCastle()
     {
-        
+        string techType = "";
+        int buildingNumber = 0; //mark which building in the list is to be built
 
         for(int i = 0; i < elements.Count; i++)
 		{
@@ -227,10 +266,53 @@ public class ElementController : NetworkBehaviour {
 
         if (_waterNumber == 3)
             _buildingType = "distillery";
+
+        int maxALevel = GetMaxTechPoints("A");
+        int maxDLevel = GetMaxTechPoints("D");
+
+        foreach (var option in aBuildingList)
+        {
+            if (option.woodNeeded == _woodNumber&&option.waterNeeded==_waterNumber&&option.fireNeeded==_fireNumber)
+            {
+                Debug.Log("Combination found");
+                if (option.techNumber <= maxALevel)
+                {
+                    techType = "A";
+                    buildingNumber = option.techNumber;
+                }
+            } 
+        }
         
-        CmdBuildCastle(player,_buildingType);
-        elements.Clear();
-        CounterToZero();
+        foreach (var option in dBuildingList)
+        {
+            if (option.woodNeeded == _woodNumber&&option.waterNeeded==_waterNumber&&option.fireNeeded==_fireNumber)
+            {
+                Debug.Log("Combination found");
+                if (option.techNumber <= maxDLevel)
+                {
+                    techType = "D";
+                    buildingNumber = option.techNumber;
+                }
+            } 
+        }
+        Debug.Log("Tech Type: "+techType+" Building number: "+buildingNumber+" Max ALevel: "+maxALevel+" Max DLevel"+maxDLevel);
+
+        if (techType != "")
+        {
+            Debug.Log("Building...");
+            CmdBuildCastle(player,techType, buildingNumber);
+            elements.Clear();
+            CounterToZero();
+            if (techType == "A")
+            {
+                aBuildingList[buildingNumber].buildingAmount++;
+            }
+            else if (techType == "D")
+            {
+                dBuildingList[buildingNumber].buildingAmount++;
+            }
+        }
+        
         
     }
 
@@ -244,13 +326,36 @@ public class ElementController : NetworkBehaviour {
     }
 
     [Command]
-	private void CmdBuildCastle(GameObject cPlayer, string decision)
+	private void CmdBuildCastle(GameObject cPlayer, string typeDecision, int buildingNumber)
 	{
         //RpcBuildCastle(cPlayer,decision);
        
-        Vector3 position = cPlayer.transform.position + cPlayer.transform.forward * 10;
+        Vector3 
+            position = cPlayer.transform.position + cPlayer.transform.forward * 10;
         GameObject building = null;
-        switch(decision)
+        if (typeDecision == "A")
+        {
+            building = Instantiate(techTree.aggressiveTech[buildingNumber], position, Quaternion.identity, buildingPool.transform);
+            building.GetComponent<Castle>().teamNo = teamNo;
+            NetworkServer.Spawn(building);
+            elements.Clear();
+            CounterToZero();
+            CmdSetParent(parentIdentity,building);
+            
+        }
+        if (typeDecision == "D")
+        {
+            
+            building = Instantiate(techTree.defensiveTech[buildingNumber], position, Quaternion.identity, buildingPool.transform);
+            building.GetComponent<Castle>().teamNo = teamNo;
+            NetworkServer.Spawn(building);
+            elements.Clear();
+            CounterToZero();
+            CmdSetParent(parentIdentity,building);
+        }
+        
+        /*
+        switch(typeDecision)
         {
             
             //may need modification to fix the problem of tech tree
@@ -282,7 +387,7 @@ public class ElementController : NetworkBehaviour {
                 return;
 
         }
-        
+        */
         //Above: need refinement when there are more element types
         
 	
@@ -331,7 +436,7 @@ public class ElementController : NetworkBehaviour {
     
 	private void ShiftElement()
 	{
-		List<string> shifted = new List<string>();
+        System.Collections.Generic.List<string> shifted = new System.Collections.Generic.List<string>();
 		for (int i = 1; i < elements.Count; i++)
 		{
 			shifted.Add(elements[i]);
@@ -339,6 +444,20 @@ public class ElementController : NetworkBehaviour {
 		shifted.Add(elements[0]);
 		elements = shifted;
 	}
+
+    private int GetMaxTechPoints(string branch)
+    {
+        int level = 0;
+        foreach (var castle in buildingPool.GetComponentsInChildren<Castle>())
+        {
+            if (castle.TechLevel(branch) >= level)
+            {
+                level = castle.TechLevel(branch);
+            }
+        }
+
+        return level;
+    }
 
 }
 

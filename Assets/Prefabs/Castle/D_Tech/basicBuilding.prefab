@@ -302,7 +302,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc4f98ec1862db449e1b0cbf96b46cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  techLevel: 1
+  dTechLevel: 1
+  aTechLevel: 0
   teamNo: 0
   explosionParticleSystem: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426,
     type: 2}

@@ -36,8 +36,8 @@ public class TeamTechnology : NetworkBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if(isServer)
-            UpdateTechLevel();
+        //if(isServer)
+            //UpdateTechLevel();
     }
     
     public void UpdateTechLevel()
@@ -49,7 +49,7 @@ public class TeamTechnology : NetworkBehaviour {
         {
             if (techLevel < maxTechLevel)
             {
-                techLevel += castle.TechLevel();
+                //techLevel += castle.TechLevel();
             }
         }
     }

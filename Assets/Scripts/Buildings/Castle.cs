@@ -5,7 +5,8 @@ using UnityEngine.Networking;
 
 public class Castle : NetworkBehaviour
 {
-    [SerializeField] private int techLevel;
+    [SerializeField] private int dTechLevel;
+    [SerializeField] private int aTechLevel;
     public int teamNo;//Used to indicate the which team
     //Team 1- No 1, Team 2 - No 2
     private int health;
@@ -78,8 +79,15 @@ public class Castle : NetworkBehaviour
         building = true;
     }
 
-    public int TechLevel()
+    public int TechLevel(string branch)
     {
-        return techLevel;
+        if(branch=="D")
+            return dTechLevel;
+        if (branch == "A")
+            return aTechLevel;
+        else
+        {
+            return 0;
+        }
     }
 }

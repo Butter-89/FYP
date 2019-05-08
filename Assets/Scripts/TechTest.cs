@@ -45,7 +45,7 @@ public class TechTest : NetworkBehaviour
         {
             if (techLevel < maxTechLevel)
             {
-                techLevel += castle.TechLevel();
+                //techLevel += castle.TechLevel();
             }
         }
     }

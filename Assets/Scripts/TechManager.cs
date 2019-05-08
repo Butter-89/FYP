@@ -1,25 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Boo.Lang;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.Serialization;
+
+public class TechLock
+{
+	List techLock = new List();
+}
 
 public class TechManager : NetworkBehaviour {
     [SerializeField] private int techLevel;
     [SerializeField] private int techDirection;
-    [SerializeField] private int maxTechLevel;
+    [FormerlySerializedAs("maxATechLevel")] [SerializeField] private int maxTechLevel; //indicate the max A level
+    private int _bestWeaponLevel;
     private int _currentWeapon;
-
 
     private Castle[] _castles;
     private Player _player;
     public GameObject[] weaponCategory;
     private GameObject buildingPool;
 
+
     public int teamNo;
     // Use this for initialization
     void Start () {
         techDirection = 0;
-        techLevel = 0;
+        techLevel = 0;  //Now that this script controls the weapon, the tech level here is A-Tech Level
+        _bestWeaponLevel = 0;
         _currentWeapon = 0;
         CmdCheckLevel();
         maxTechLevel = 3; //temporarily max tech level = 3
@@ -35,7 +44,24 @@ public class TechManager : NetworkBehaviour {
     }
     // Update is called once per frame
 	
-	void Update () {
+	void Update () {  //change to update !!
+		//Change weapon by pressing the alpha number keys
+		if (Input.GetKeyDown(KeyCode.Alpha1)&&_bestWeaponLevel>=0)
+		{
+			CmdChangeWeapon(1);
+		}
+		if (Input.GetKeyDown(KeyCode.Alpha2)&&_bestWeaponLevel>=1)
+		{
+			CmdChangeWeapon(2);
+		}
+		if (Input.GetKeyDown(KeyCode.Alpha3)&&_bestWeaponLevel>=2)
+		{
+			CmdChangeWeapon(3);
+		}
+		if (Input.GetKeyDown(KeyCode.Alpha4)&&_bestWeaponLevel>=3)
+		{
+			CmdChangeWeapon(4);
+		}
 		if (Input.GetKeyDown("t"))
 		{
 			CmdCheckLevel();
@@ -50,19 +76,21 @@ public class TechManager : NetworkBehaviour {
 		buildingPool = GameObject.Find("Team"+teamNo);
 		if(buildingPool==null)
 			Debug.Log("Building pool not fuound!");
-		techLevel = -1;
+		techLevel = 0;
 		//Check for tech-level update
 		_castles = buildingPool.GetComponentsInChildren<Castle>();
 		foreach (Castle castle in _castles)
 		{
-			if (techLevel<maxTechLevel)
+			if (techLevel<=castle.TechLevel("A"))
 			{
-				techLevel+=castle.TechLevel();
+				techLevel=castle.TechLevel("A");
 			}
 		}
+		
 		//Debug.Log(buildingPool.transform.name+"'s techLevel= "+techLevel);
+		Debug.Log("Max weapon level: "+techLevel);
 		CmdUpgradeWeapon(techLevel);
-		_player.CmdUpdateWeapon(techLevel);
+		_player.CmdUpdateWeapon(techLevel); 
 	}
 	
 
@@ -79,7 +107,7 @@ public class TechManager : NetworkBehaviour {
 	}
 
 	[Command]
-	private void CmdUpgradeWeapon(int techLevel)
+	public void CmdUpgradeWeapon(int techLevel)
 	{
 		RpcUpgradeWeapon(techLevel);
 	}
@@ -88,12 +116,34 @@ public class TechManager : NetworkBehaviour {
 	private void RpcUpgradeWeapon(int techLevel)
 	{
 		_player = GetComponent<Player>();
-		//Debug.Log("Active weapon: "+_player.activeWeapon);
-		_player.activeWeapon = techLevel;
 		weaponCategory[_currentWeapon].gameObject.SetActive(false);
-		weaponCategory[techLevel].gameObject.SetActive(true);
-		//Debug.Log("Techlevel: "+techLevel);
-		_currentWeapon = techLevel;
+
+		if (_bestWeaponLevel<=techLevel)
+		{
+			_bestWeaponLevel = techLevel;
+		}
+		
+		weaponCategory[_bestWeaponLevel].gameObject.SetActive(true);
+		
+		_currentWeapon = _bestWeaponLevel;
+		_player.activeWeapon = _currentWeapon;
+	}
+
+	[Command]
+	public void CmdChangeWeapon(int weaponNo)
+	{
+		RpcChangeWeapon(weaponNo);
+	}
+
+	[ClientRpc]
+	private void RpcChangeWeapon(int weaponNo)
+	{
+		_player = GetComponent<Player>();
+		weaponCategory[_currentWeapon].gameObject.SetActive(false);
+
+		_currentWeapon = weaponNo-1;
+		weaponCategory[_currentWeapon].gameObject.SetActive(true);
+		_player.activeWeapon = _currentWeapon;
 	}
 
 }
