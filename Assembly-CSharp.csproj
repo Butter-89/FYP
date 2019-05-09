@@ -72,7 +72,6 @@
     <Compile Include="Assets\Dungeon Pack\Scripts\SpikeTrapDemo.cs" />
     <Compile Include="Assets\Dungeon Pack\Scripts\TrapDoorDemo.cs" />
     <Compile Include="Assets\EndGame.cs" />
-    <Compile Include="Assets\EnergyShield.cs" />
     <Compile Include="Assets\EventManager.cs" />
     <Compile Include="Assets\JMO Assets\WarFX\Demo\Assets\CFX_AutoStopLoopedEffect.cs" />
     <Compile Include="Assets\JMO Assets\WarFX\Demo\Assets\CFX_Demo_RandomDir.cs" />
@@ -90,6 +89,7 @@
     <Compile Include="Assets\JMO Assets\WarFX\Spawn System\CFX_SpawnSystem.cs" />
     <Compile Include="Assets\JoinGame.cs" />
     <Compile Include="Assets\LinkToNetworkManager.cs" />
+    <Compile Include="Assets\Models\AtomicBomb\RotateCam.cs" />
     <Compile Include="Assets\RoomListItem.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\MenuSceneLoader.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\SceneAndURLLoader.cs" />
@@ -100,6 +100,7 @@
     <Compile Include="Assets\SampleScenes\Scripts\SlowMoButton.cs" />
     <Compile Include="Assets\Scripts\Ammunition.cs" />
     <Compile Include="Assets\Scripts\Buildings\Castle.cs" />
+    <Compile Include="Assets\Scripts\Buildings\EnergyShield.cs" />
     <Compile Include="Assets\Scripts\Buildings\Turret\Actor.cs" />
     <Compile Include="Assets\Scripts\Buildings\Turret\Turret.cs" />
     <Compile Include="Assets\Scripts\Element\ElementController.cs" />
@@ -139,6 +140,7 @@
     <None Include="Assets\JMO Assets\WarFX\Shaders\WFX_S Alpha-Specular TintColor.shader" />
     <None Include="Assets\Army Bunker\Info.txt" />
     <None Include="Assets\JMO Assets\WarFX\Shaders\WFX_S AlphaBlend NoSoftParticles.shader" />
+    <None Include="Assets\Handpainted Forest Environment Free Sample\Terrain Trees\ReadMe.txt" />
     <None Include="Assets\JMO Assets\WarFX\_Effects\MuzzleFlashes\!MuzzleFlash Differences.txt" />
     <None Include="Assets\JMO Assets\WarFX\Shaders\WFX_S Smoke Scroll.shader" />
     <None Include="Assets\JMO Assets\WarFX\Shaders\WFX_S Add Scroll.shader" />
@@ -154,7 +156,6 @@
     <None Include="Assets\JMO Assets\WarFX\Shaders\WFX_S Multiply Soft.shader" />
     <None Include="Assets\M3A1 Scout Car\readme.txt" />
     <None Include="Assets\JMO Assets\WarFX\Shaders\WFX_S Alpha-Diffuse TintColor.shader" />
-    <None Include="Assets\Satellite Dish\info.txt" />
     <None Include="Assets\SampleScenes\Shaders\Skybox-Procedural.shader" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>F:/UnityProjects/FYP/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

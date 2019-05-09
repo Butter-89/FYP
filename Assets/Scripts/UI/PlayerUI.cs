@@ -76,14 +76,33 @@ public class PlayerUI : NetworkBehaviour {
 
     void EndCheck()
     {
+        bool base1Existing = false;
+        bool base2Existing = false;
+        foreach (var castle in team1.GetComponentsInChildren<Castle>())
+        {
+            if (castle.isBase)
+            {
+                base1Existing = true;
+            }
+        }
+        foreach (var castle in team2.GetComponentsInChildren<Castle>())
+        {
+            if (castle.isBase)
+            {
+                base2Existing = true;
+            }
+        }
+        
         if(player.isServer)
         {
-            if (team1.GetComponent<TeamTechnology>().techLevel == -1 && endGameFlag == false)
+            
+            
+            if (!base1Existing && endGameFlag == false) //originally condition1 is: team1.GetComponent<TeamTechnology>().techLevel == -1
             {
                 ToggleEndGameLose();
                 endGameFlag = true;
             }
-            if (team2.GetComponent<TeamTechnology>().techLevel == -1 && endGameFlag == false)
+            if (!base2Existing && endGameFlag == false) //originally condition1 is: team2.GetComponent<TeamTechnology>().techLevel == -1
             {
                 ToggleEndGameWin();
                 endGameFlag = true;
@@ -91,12 +110,12 @@ public class PlayerUI : NetworkBehaviour {
         }
         else
         {
-            if (team1.GetComponent<TeamTechnology>().techLevel == -1 && endGameFlag == false)
+            if (!base1Existing && endGameFlag == false)
             {
                 ToggleEndGameWin();
                 endGameFlag = true;
             }
-            if (team2.GetComponent<TeamTechnology>().techLevel == -1 && endGameFlag == false)
+            if (!base2Existing && endGameFlag == false)
             {
                 ToggleEndGameLose();
                 endGameFlag = true;

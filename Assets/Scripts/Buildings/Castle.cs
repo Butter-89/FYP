@@ -17,7 +17,7 @@ public class Castle : NetworkBehaviour
 
     public GameObject explosionParticleSystem;
     public AudioSource collapse;
-
+    public bool isBase;
     public float _Timer = 3f;
 
     void Start () {

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -33,12 +34,14 @@ public class TeamTechnology : NetworkBehaviour {
         buildingPool = gameObject;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
         //if(isServer)
             //UpdateTechLevel();
     }
+
+    // Update is called once per frame
+
     
     public void UpdateTechLevel()
     {
@@ -47,10 +50,7 @@ public class TeamTechnology : NetworkBehaviour {
         _castles = buildingPool.GetComponentsInChildren<Castle>();
         foreach (Castle castle in _castles)
         {
-            if (techLevel < maxTechLevel)
-            {
-                //techLevel += castle.TechLevel();
-            }
+            //techLevel += castle.TechLevel();
         }
     }
     

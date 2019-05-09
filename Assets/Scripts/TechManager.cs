@@ -20,6 +20,7 @@ public class TechManager : NetworkBehaviour {
     private Castle[] _castles;
     private Player _player;
     public GameObject[] weaponCategory;
+    public GameObject throwingPoint;
     private GameObject buildingPool;
 
 
@@ -38,10 +39,6 @@ public class TechManager : NetworkBehaviour {
         
     }
 
-    private void Awake()
-    {
-	    
-    }
     // Update is called once per frame
 	
 	void Update () {  //change to update !!
@@ -61,6 +58,11 @@ public class TechManager : NetworkBehaviour {
 		if (Input.GetKeyDown(KeyCode.Alpha4)&&_bestWeaponLevel>=3)
 		{
 			CmdChangeWeapon(4);
+		}
+
+		if (Input.GetKeyDown(KeyCode.G))
+		{
+			Instantiate(weaponCategory[4], throwingPoint.transform.position, Quaternion.identity);
 		}
 		if (Input.GetKeyDown("t"))
 		{
