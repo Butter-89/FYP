@@ -18,7 +18,8 @@ public class Player : NetworkBehaviour
     private int maxHealth = 100;
 
     [SyncVar]
-    private int currentHealth;
+    public int currentHealth;
+    
 
     [SerializeField] private Behaviour[] disableOnDeath;
     private bool[] wasEnabled;
@@ -38,21 +39,24 @@ public class Player : NetworkBehaviour
         }
         SetDefaults();
     }
-    
-    
-/*
-    private void Update()
-    {
-        if (!isLocalPlayer)
-        {
-            return;
-        }
 
-        if (Input.GetKeyDown(KeyCode.K))
+    public int GetCurrentHP()
+    {
+        return currentHealth;
+    }
+    /*
+        private void Update()
         {
-            RpcTakeDamage(99999);
-        }
-    }*/
+            if (!isLocalPlayer)
+            {
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                RpcTakeDamage(99999);
+            }
+        }*/
 
     [ClientRpc]
     public void RpcTakeDamage(int _amounts)

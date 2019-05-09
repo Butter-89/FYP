@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerHealth : MonoBehaviour
 {
 	public int maxHealth;
 
-	private int _currentHealth;
-
+    private int _currentHealth;
 	private bool _death;
 	// Use this for initialization
 	void Awake ()
@@ -42,6 +42,8 @@ public class PlayerHealth : MonoBehaviour
 	{
 		Destroy(gameObject);
 	}
+
+    
 	
 	
 }
