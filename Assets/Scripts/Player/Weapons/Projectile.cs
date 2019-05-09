@@ -53,5 +53,19 @@ public class Projectile : MonoBehaviour
 		Destroy(gameObject,5f);
 	}
 
+	public void Deactivate()
+	{
+		if (explosive)
+		{
+			Instantiate(explosionParticle, transform.position, transform.rotation);
+			explosionAudio.Play();
+		}
+		
+		var mesh = GetComponentInChildren<MeshRenderer>();
+		mesh.enabled = false;
+		GetComponent<BoxCollider>().enabled = false;
+		Destroy(gameObject,5f);
+	}
+
 	
 }

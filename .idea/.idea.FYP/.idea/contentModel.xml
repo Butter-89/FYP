@@ -37,6 +37,7 @@
           </e>
         </e>
         <e p="EndGame.cs" t="Include" />
+        <e p="EnergyShield.cs" t="Include" />
         <e p="EventManager.cs" t="Include" />
         <e p="JMO Assets" t="Include">
           <e p="!JMO Assets Readme.txt" t="Include" />

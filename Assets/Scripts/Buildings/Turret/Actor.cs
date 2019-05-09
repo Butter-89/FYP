@@ -32,7 +32,7 @@ public class ActorAudio {
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(AudioSource))]
-public class Actor : NetworkBehaviour {
+public class Actor : MonoBehaviour {
 
 	public ActorParameters parameters;
 	public ActorFX VFX;

@@ -9,10 +9,10 @@ public class Castle : NetworkBehaviour
     [SerializeField] private int aTechLevel;
     public int teamNo;//Used to indicate the which team
     //Team 1- No 1, Team 2 - No 2
-    private int health;
+    [SerializeField] private int health;
     private bool sinking;
     private bool building;
-    private float sinkSpeed = 3f;
+    [SerializeField] private float sinkSpeed = 3f;
     private bool destroyed;
 
     public GameObject explosionParticleSystem;
@@ -67,8 +67,17 @@ public class Castle : NetworkBehaviour
 
     private void Collapse() //castle destroyed by the other side
     {
-        Instantiate(explosionParticleSystem, this.transform.position, Quaternion.identity);
-        collapse.Play();
+        
+        
+        if (explosionParticleSystem)
+        {
+            Instantiate(explosionParticleSystem, this.transform.position, Quaternion.identity);
+        }
+
+        if (collapse)
+        {
+            collapse.Play();
+        }
         sinking = true;
         destroyed = true;
         

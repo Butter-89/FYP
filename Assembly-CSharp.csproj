@@ -72,6 +72,7 @@
     <Compile Include="Assets\Dungeon Pack\Scripts\SpikeTrapDemo.cs" />
     <Compile Include="Assets\Dungeon Pack\Scripts\TrapDoorDemo.cs" />
     <Compile Include="Assets\EndGame.cs" />
+    <Compile Include="Assets\EnergyShield.cs" />
     <Compile Include="Assets\EventManager.cs" />
     <Compile Include="Assets\JMO Assets\WarFX\Demo\Assets\CFX_AutoStopLoopedEffect.cs" />
     <Compile Include="Assets\JMO Assets\WarFX\Demo\Assets\CFX_Demo_RandomDir.cs" />
