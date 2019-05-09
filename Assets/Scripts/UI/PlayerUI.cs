@@ -30,6 +30,9 @@ public class PlayerUI : NetworkBehaviour {
     GameObject team1;
     GameObject team2;
 
+    [SerializeField]
+    RectTransform HPFill;
+
     private bool endGameFlag = false;
 
 
@@ -63,7 +66,7 @@ public class PlayerUI : NetworkBehaviour {
 	void Update () {
         RefreshUI();
         RefreshInformation();
-
+        SetHPAmount(player.GetCurrentHP());
         if(Input.GetKeyDown("escape"))
         {
             TogglePauseMenu();
@@ -72,6 +75,12 @@ public class PlayerUI : NetworkBehaviour {
             EndCheck();
         
 
+    }
+
+    void SetHPAmount (int _amount)
+    {
+        float amount = _amount;
+        HPFill.localScale = new Vector3(1f, amount/100, 1f);
     }
 
     void EndCheck()
