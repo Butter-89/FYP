@@ -40,13 +40,13 @@ public class PlayerController : MonoBehaviour {
 
     void Update()
     {
-        if(PauseMenu.IsOn||EndGame.IsOn)
+        if(PauseMenu.IsOn||EndGame.IsOn||UserGuide.IsOn)
         {
             Cursor.lockState = CursorLockMode.None;
             return;
         }
 
-        if (!PauseMenu.IsOn)
+        if (!PauseMenu.IsOn&&!UserGuide.IsOn)
             Cursor.lockState = CursorLockMode.Locked;
 
 

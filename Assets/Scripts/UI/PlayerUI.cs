@@ -9,6 +9,7 @@ public class PlayerUI : NetworkBehaviour {
     
     private PlayerController playerController;
     private ElementController elementController;
+    private Weapon weapon;
     private Player player;
 
     public Text firstElementUI;
@@ -25,6 +26,9 @@ public class PlayerUI : NetworkBehaviour {
     GameObject pauseMenu;
 
     [SerializeField]
+    GameObject userGuide;
+
+    [SerializeField]
     GameObject endGame;
 
     GameObject team1;
@@ -32,6 +36,9 @@ public class PlayerUI : NetworkBehaviour {
 
     [SerializeField]
     RectTransform HPFill;
+
+    [SerializeField]
+    RectTransform AmmoFill;
 
     private bool endGameFlag = false;
 
@@ -67,6 +74,10 @@ public class PlayerUI : NetworkBehaviour {
         RefreshUI();
         RefreshInformation();
         SetHPAmount(player.GetCurrentHP());
+        if (player != null)
+            weapon = player.GetComponentInChildren<Weapon>();
+        if(weapon != null)
+            SetAmmoAmount(weapon.GetCurrentAmmo());
         if(Input.GetKeyDown("escape"))
         {
             TogglePauseMenu();
@@ -81,6 +92,12 @@ public class PlayerUI : NetworkBehaviour {
     {
         float amount = _amount;
         HPFill.localScale = new Vector3(1f, amount/100, 1f);
+    }
+
+    void SetAmmoAmount (int _amount)
+    {
+        float amount = _amount;
+        AmmoFill.localScale = new Vector3(1f, amount / weapon.ammoCapacity, 1f);
     }
 
     void EndCheck()
@@ -118,6 +135,13 @@ public class PlayerUI : NetworkBehaviour {
     {
         pauseMenu.SetActive(!pauseMenu.activeSelf);
         PauseMenu.IsOn = pauseMenu.activeSelf;
+
+        if (UserGuide.IsOn)
+        {
+            userGuide.SetActive(!userGuide.activeSelf);
+            UserGuide.IsOn = userGuide.activeSelf;
+        }
+            
 
     }
 

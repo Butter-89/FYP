@@ -10,6 +10,12 @@ public class PauseMenu : MonoBehaviour
 
     private NetworkManager networkManager;
 
+    [SerializeField]
+    GameObject userGuide;
+
+    [SerializeField]
+    GameObject pauseMenu;
+
     private void Start()
     {
         networkManager = NetworkManager.singleton;
@@ -20,5 +26,14 @@ public class PauseMenu : MonoBehaviour
         MatchInfo matchInfo = networkManager.matchInfo;
         networkManager.matchMaker.DropConnection(matchInfo.networkId, matchInfo.nodeId, 0, networkManager.OnDropConnection);
         networkManager.StopHost();
+    }
+
+    public void OpenUserGuide()
+    {
+        userGuide.SetActive(!userGuide.activeSelf);
+        UserGuide.IsOn = userGuide.activeSelf;
+
+        pauseMenu.SetActive(false);
+        PauseMenu.IsOn = false;
     }
 }

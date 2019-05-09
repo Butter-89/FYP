@@ -50,7 +50,7 @@ public class Weapon : NetworkBehaviour {
     //Ammo control
     public int ammoCapacity = 12;
     public int shotPerRound = 1;
-    private int _currentAmmo;
+    public int _currentAmmo;
     public float reloadTime = 2.0f;
     public bool showCurrentAmmo = true;
 
@@ -127,7 +127,10 @@ public class Weapon : NetworkBehaviour {
         }
     }
 
-    
+    public int GetCurrentAmmo()
+    {
+        return _currentAmmo;
+    }
 	
 	void Update () {
         _currentAccuracy = Mathf.Lerp(_currentAccuracy, accuracy, accuracyRecoverRate * Time.deltaTime);
