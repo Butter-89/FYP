@@ -88,7 +88,7 @@ public class TechManager : NetworkBehaviour {
 		}
 		
 		//Debug.Log(buildingPool.transform.name+"'s techLevel= "+techLevel);
-		Debug.Log("Max weapon level: "+techLevel);
+		//Debug.Log("Max weapon level: "+techLevel);
 		CmdUpgradeWeapon(techLevel);
 		_player.CmdUpdateWeapon(techLevel); 
 	}

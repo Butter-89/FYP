@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
@@ -12,6 +13,7 @@ public class TechTree
 {
     public List<GameObject> defensiveTech = new List<GameObject>();
     public List<GameObject> aggressiveTech = new List<GameObject>();
+    public List<GameObject> defensiveBuildings = new List<GameObject>();
     public GameObject finalTech;
 
     public int maxDTech;
@@ -36,6 +38,8 @@ public class ElementController : NetworkBehaviour
     public TechTree techTree;
     public TechBuilding[] dBuildingList;
     public TechBuilding[] aBuildingList;
+    public TechBuilding[] dBuildings;
+    private Castle[] _castles;
     
     public Text firstElementUI;
     public Text secondElementUI;
@@ -79,7 +83,7 @@ public class ElementController : NetworkBehaviour
     private bool flag = true;
 
     private string _buildingType = "";
-    private int teamNo;
+    [SerializeField] private int teamNo;
     private NetworkIdentity parentIdentity;
 
     // Use this for initialization
@@ -92,7 +96,8 @@ public class ElementController : NetworkBehaviour
         techLevel = 0;
         teamNo = GetComponent<TechManager>().teamNo;
         buildingPool = GameObject.Find("Team"+teamNo); //buildingPool is now Team#
-        parentIdentity = buildingPool.GetComponent<NetworkIdentity>();
+        
+        //Debug.Log(buildingPool.transform.name);
         
         //Debug.Log(transform.name+" "+buildingPool.transform.name);
         if (isServer)
@@ -182,7 +187,10 @@ public class ElementController : NetworkBehaviour
         */
     }
 
-    
+    private void FixedUpdate()
+    {
+        UpdateTechBuildingAmount();
+    }
 
     public void SetUIInformation(string _information)
     {
@@ -274,7 +282,7 @@ public class ElementController : NetworkBehaviour
         {
             if (option.woodNeeded == _woodNumber&&option.waterNeeded==_waterNumber&&option.fireNeeded==_fireNumber)
             {
-                Debug.Log("Combination found");
+                //Debug.Log("Combination found");
                 if (option.techNumber <= maxALevel)
                 {
                     techType = "A";
@@ -287,7 +295,7 @@ public class ElementController : NetworkBehaviour
         {
             if (option.woodNeeded == _woodNumber&&option.waterNeeded==_waterNumber&&option.fireNeeded==_fireNumber)
             {
-                Debug.Log("Combination found");
+                //Debug.Log("Combination found");
                 if (option.techNumber <= maxDLevel)
                 {
                     techType = "D";
@@ -295,12 +303,25 @@ public class ElementController : NetworkBehaviour
                 }
             } 
         }
-        Debug.Log("Tech Type: "+techType+" Building number: "+buildingNumber+" Max ALevel: "+maxALevel+" Max DLevel"+maxDLevel);
+
+        foreach (var option in dBuildings)
+        {
+            if (option.woodNeeded == _woodNumber&&option.waterNeeded==_waterNumber&&option.fireNeeded==_fireNumber)
+            {
+                if (dBuildingList[option.techNumber].buildingAmount>=1)
+                {
+                    techType = "B";
+                    buildingNumber = option.techNumber;
+                }
+            } 
+        }
+        //Debug.Log("Tech Type: "+techType+" Building number: "+buildingNumber+" Max ALevel: "+maxALevel+" Max DLevel"+maxDLevel);
 
         if (techType != "")
         {
-            Debug.Log("Building...");
-            CmdBuildCastle(player,techType, buildingNumber);
+            //Debug.Log("Building...");
+            Vector3 position = player.transform.position + player.transform.forward * 10;
+            CmdBuildCastle(techType, buildingNumber, position);
             elements.Clear();
             CounterToZero();
             if (techType == "A")
@@ -310,6 +331,10 @@ public class ElementController : NetworkBehaviour
             else if (techType == "D")
             {
                 dBuildingList[buildingNumber].buildingAmount++;
+            }
+            else if (techType == "B")
+            {
+                dBuildings[buildingNumber].buildingAmount++;
             }
         }
         
@@ -326,18 +351,17 @@ public class ElementController : NetworkBehaviour
     }
 
     [Command]
-	private void CmdBuildCastle(GameObject cPlayer, string typeDecision, int buildingNumber)
+	private void CmdBuildCastle(string typeDecision, int buildingNumber, Vector3 position)
 	{
         //RpcBuildCastle(cPlayer,decision);
-       
-        Vector3 
-            position = cPlayer.transform.position + cPlayer.transform.forward * 10;
+       parentIdentity = buildingPool.GetComponent<NetworkIdentity>();
+        //Vector3 position = cPlayer.transform.position + cPlayer.transform.forward * 10;
         GameObject building = null;
         if (typeDecision == "A")
         {
             building = Instantiate(techTree.aggressiveTech[buildingNumber], position, Quaternion.identity, buildingPool.transform);
-            building.GetComponent<Castle>().teamNo = teamNo;
             NetworkServer.Spawn(building);
+            building.GetComponent<Castle>().teamNo = teamNo;
             elements.Clear();
             CounterToZero();
             CmdSetParent(parentIdentity,building);
@@ -347,13 +371,50 @@ public class ElementController : NetworkBehaviour
         {
             
             building = Instantiate(techTree.defensiveTech[buildingNumber], position, Quaternion.identity, buildingPool.transform);
-            building.GetComponent<Castle>().teamNo = teamNo;
             NetworkServer.Spawn(building);
+            building.GetComponent<Castle>().teamNo = teamNo;
             elements.Clear();
             CounterToZero();
             CmdSetParent(parentIdentity,building);
         }
-        
+        if (typeDecision == "B")
+        {
+            
+            building = Instantiate(techTree.defensiveBuildings[buildingNumber], position, Quaternion.identity, buildingPool.transform);
+
+            NetworkServer.Spawn(building);
+            if (building.GetComponent<Castle>())
+            {
+                building.GetComponent<Castle>().teamNo = teamNo;
+            }
+
+            if (building.GetComponentInChildren<Turret>())
+            {
+                //int team = 0;
+                if (gameObject.CompareTag("Team1"))
+                {
+                    teamNo = 1;
+                }
+                else
+                {
+                    teamNo = 2;
+                }
+                Debug.Log("Turret script found, player teamNo: "+teamNo);
+                CmdSetTeam(building,teamNo);
+                    
+                //building.GetComponentInChildren<Turret>().teamNo = teamNo;
+                
+                //building.GetComponentInChildren<Turret>().UpdateTargetTag();
+            }
+            else
+            {
+                Debug.Log("Turret script NOT found");
+            }
+            
+            elements.Clear();
+            CounterToZero();
+            CmdSetParent(parentIdentity,building);
+        }
         /*
         switch(typeDecision)
         {
@@ -394,15 +455,54 @@ public class ElementController : NetworkBehaviour
 	}
 
     [Command]
+    private void CmdSetTeam(GameObject building, int team)
+    {
+        if (building.GetComponent<NetworkIdentity>())  //for turret only
+        {
+            Debug.Log("Turret NetId found");
+            RpcSetTeam(building.GetComponent<NetworkIdentity>().netId, team);
+        }
+    }
+
+    [ClientRpc]
+    private void RpcSetTeam(NetworkInstanceId buildingNetId, int team)
+    {
+        if (buildingNetId != NetworkInstanceId.Invalid)
+        {
+            Debug.Log("NetID not null");
+            var targetBuilding = ClientScene.FindLocalObject(buildingNetId);
+            if (targetBuilding != null)
+            {
+                Debug.Log("Target building found: "+targetBuilding.transform.name);
+                if (targetBuilding.GetComponent<Castle>())
+                {
+                    Debug.Log("Target building: castle");
+                    targetBuilding.GetComponent<Castle>().teamNo = team;
+                }
+                else if (targetBuilding.GetComponentInChildren<Turret>())
+                {
+                    Debug.Log("Target building: turret head, team"+team);
+                    targetBuilding.GetComponentInChildren<Turret>().teamNo = team;
+                    targetBuilding.GetComponentInChildren<Turret>().UpdateTargetTag();
+                }
+            }
+        }
+    }
+
+    [Command]
     private void CmdSetParent(NetworkIdentity parentNetworkIdentity, GameObject building)
     {
+        //this.parentNetworkIdentity = buildingPool.GetComponent<NetworkIdentity>();
+        //Debug.Log(this.parentIdentity);
         if (parentNetworkIdentity != null) {
+            //Debug.Log("BuildingPool netID found");
             // Set locally on server
-            transform.SetParent (parentNetworkIdentity.transform);
+            building.transform.SetParent (parentNetworkIdentity.transform);
             // Set remotely on clients
             RpcSetParent (parentNetworkIdentity.netId,building);
         }
         else {
+            Debug.Log("BuildingPool netID NOT found");
             // Set locally on server
             transform.SetParent (null);
             // Set remotely on clients
@@ -416,6 +516,7 @@ public class ElementController : NetworkBehaviour
         Transform parentTransform = null;
         if (newParentNetId != NetworkInstanceId.Invalid) {
             // Find the parent by netid and set self as child
+            //Debug.Log("Parent netID is not null");
             var parentGobj = ClientScene.FindLocalObject (newParentNetId);
             if (parentGobj != null) {
                 parentTransform = parentGobj.transform;
@@ -459,6 +560,31 @@ public class ElementController : NetworkBehaviour
         return level;
     }
 
+    public void UpdateTechBuildingAmount()
+    {
+        foreach (var option in dBuildingList)
+        {
+            option.buildingAmount = 0;
+        }
+        foreach (var option in aBuildingList)
+        {
+            option.buildingAmount = 0;
+        }
+        
+        
+        _castles = buildingPool.GetComponentsInChildren<Castle>();
+        foreach (Castle castle in _castles)
+        {
+            if (castle.TechLevel("D")>0)
+            {
+                dBuildingList[castle.TechLevel("D")-1].buildingAmount++;
+            }
+            else if (castle.TechLevel("A")>0)
+            {
+                aBuildingList[castle.TechLevel("A")-1].buildingAmount++;
+            }
+        }
+    }
 }
 
 

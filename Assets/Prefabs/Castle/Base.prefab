@@ -323,11 +323,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc4f98ec1862db449e1b0cbf96b46cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  techLevel: 1
+  dTechLevel: 0
+  aTechLevel: 0
   teamNo: 0
+  health: 0
+  sinkSpeed: 3
   explosionParticleSystem: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426,
     type: 2}
-  collapse: {fileID: 82657750151120398, guid: 9e727109695c5d3408b87a6afda14d0b, type: 2}
+  collapse: {fileID: 82154780862772800}
   _Timer: 3
 --- !u!114 &114809877544964604
 MonoBehaviour:

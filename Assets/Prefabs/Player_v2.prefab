@@ -3643,12 +3643,16 @@ MonoBehaviour:
   techTree:
     defensiveTech:
     - {fileID: 1536096317113808, guid: 064e3092b0f0ae74d966a2f7a31887cf, type: 2}
-    - {fileID: 1941472234170156, guid: 95725733bdd95494889720259f6892f8, type: 2}
     - {fileID: 116012, guid: eb0a1ded12c056b48b6e25ff137abbde, type: 2}
+    - {fileID: 1941472234170156, guid: 95725733bdd95494889720259f6892f8, type: 2}
     aggressiveTech:
     - {fileID: 1462133981245008, guid: 1624f7b014ebc924e9c442eea0adb3be, type: 2}
     - {fileID: 1472483918498542, guid: 50921750b370fa042850d2da3591d67b, type: 2}
     - {fileID: 1538486823914876, guid: 04dc839d59e6ca4479abb3ab67aaddfc, type: 2}
+    defensiveBuildings:
+    - {fileID: 1374665231502870, guid: 2cf514f724fc7be43b246727bfcf3572, type: 2}
+    - {fileID: 1362749560021132, guid: a8de288bf8df0c142a2944443b792bb5, type: 2}
+    - {fileID: 1922644817433084, guid: 2d3109d9bff61f9468a9e7982e361f3e, type: 2}
     finalTech: {fileID: 0}
     maxDTech: 3
     maxATech: 3
@@ -3681,9 +3685,25 @@ MonoBehaviour:
     fireNeeded: 1
   - techNumber: 2
     buildingAmount: 0
+    woodNeeded: 0
+    waterNeeded: 1
+    fireNeeded: 2
+  dBuildings:
+  - techNumber: 0
+    buildingAmount: 0
+    woodNeeded: 3
+    waterNeeded: 0
+    fireNeeded: 0
+  - techNumber: 1
+    buildingAmount: 0
     woodNeeded: 1
     waterNeeded: 0
     fireNeeded: 2
+  - techNumber: 2
+    buildingAmount: 0
+    woodNeeded: 1
+    waterNeeded: 2
+    fireNeeded: 0
   firstElementUI: {fileID: 0}
   secondElementUI: {fileID: 0}
   thirdElementUI: {fileID: 0}
@@ -3805,7 +3825,7 @@ MonoBehaviour:
   - {fileID: 114598852342129952}
   - {fileID: 114630633613739686}
   - {fileID: 81658319020431548}
-  - {fileID: 0}
+  - {fileID: 114159008530356748}
   - {fileID: 20432830621348996}
   - {fileID: 114122035095301664}
   - {fileID: 114767985505990062}

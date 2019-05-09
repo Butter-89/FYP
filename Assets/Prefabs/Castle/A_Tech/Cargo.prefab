@@ -1803,9 +1803,11 @@ MonoBehaviour:
   dTechLevel: 0
   aTechLevel: 2
   teamNo: 0
+  health: 0
+  sinkSpeed: 3
   explosionParticleSystem: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426,
     type: 2}
-  collapse: {fileID: 82170986360613878, guid: 1624f7b014ebc924e9c442eea0adb3be, type: 2}
+  collapse: {fileID: 82523870087980766}
   _Timer: 3
 --- !u!114 &114636735210062394
 MonoBehaviour:

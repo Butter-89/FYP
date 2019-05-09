@@ -63,7 +63,7 @@ public class TurretTargeting {
 [RequireComponent(typeof(Animator))]
 
 
-public class Turret : NetworkBehaviour {
+public class Turret : MonoBehaviour { //Change here!!!
 
 	public TurretParameters parameters;
 	public TurretTargeting targeting;
@@ -71,7 +71,7 @@ public class Turret : NetworkBehaviour {
 	public TurretAudio SFX;
 	
 	private bool playerDead = false;
-	private int teamNo = 1;
+	public int teamNo;
 
 	private void Awake() {
 		
@@ -79,12 +79,13 @@ public class Turret : NetworkBehaviour {
 		GetComponent<SphereCollider> ().radius = parameters.radius;
 		GetComponent<BoxCollider> ().size =  new Vector3(2,2,2);
 		GetComponent<BoxCollider> ().center =  new Vector3(0,1,0);
+		/*
 		if (teamNo == 1)
 			targeting.tagsToFire[0] = "Team2";
 		else
 		{
 			targeting.tagsToFire[0] = "Team1";
-		}
+		}*/
 
 	}
 
@@ -104,9 +105,21 @@ public class Turret : NetworkBehaviour {
 		}
 			
 		if (targeting.target != null) {
-			Aiming ();
+			Aiming();
 			Invoke ("Shooting", parameters.ShootingDelay);
 		}
+	}
+
+	public void UpdateTargetTag()
+	{
+		//Debug.Log("Updating target tag...");
+		if (teamNo == 1)
+			targeting.tagsToFire[0] = "Team2";
+		else if (teamNo == 2)
+		{
+			targeting.tagsToFire[0] = "Team1";
+		}
+		Debug.Log("Team"+teamNo);
 	}
 
 	#region Aiming and Shooting
@@ -144,6 +157,8 @@ public class Turret : NetworkBehaviour {
 		}
 	}
 
+	
+	
 	public void Aiming() {
 
 		if (targeting.target == null) {
