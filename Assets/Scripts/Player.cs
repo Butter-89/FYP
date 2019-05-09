@@ -156,7 +156,7 @@ public class Player : NetworkBehaviour
         var rotation = new Quaternion();
         rotation.Set(Qx,Qy,Qz,W);
         
-        Debug.Log("Active weapon: "+activeWeapon);
+        //Debug.Log("Active weapon: "+activeWeapon);
         projectile = weapons[activeWeapon].projectile;
         //var raycastSpot = weapons[activeWeapon].raycastStartSpot;
         var newProjectile = Instantiate(projectile, position, rotation);

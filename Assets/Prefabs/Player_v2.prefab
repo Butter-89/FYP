@@ -1959,7 +1959,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1791584112022010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 138.54228, y: 15.000915, z: 129.01407}
+  m_LocalPosition: {x: 167.22751, y: 14.001099, z: 220.89285}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4063395204030824}
@@ -3653,7 +3653,8 @@ MonoBehaviour:
     - {fileID: 1374665231502870, guid: 2cf514f724fc7be43b246727bfcf3572, type: 2}
     - {fileID: 1362749560021132, guid: a8de288bf8df0c142a2944443b792bb5, type: 2}
     - {fileID: 1922644817433084, guid: 2d3109d9bff61f9468a9e7982e361f3e, type: 2}
-    finalTech: {fileID: 0}
+    finalTech: {fileID: 1386370116842618, guid: d1a9c9897b0f2aa43af6cbf323c227de,
+      type: 2}
     maxDTech: 3
     maxATech: 3
   dBuildingList:
@@ -3727,6 +3728,7 @@ MonoBehaviour:
   buildRange: 0
   elements: []
   UIInformation: 
+  teamNo: 0
 --- !u!114 &114353778630210458
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3831,6 +3833,7 @@ MonoBehaviour:
   - {fileID: 114767985505990062}
   - {fileID: 114884400771414852}
   - {fileID: 114353778630210458}
+  - {fileID: 114635614637803434}
   playerUIPrefab: {fileID: 1778936748125102, guid: 929bc41d87732154683b3e730a89c0b2,
     type: 2}
 --- !u!114 &114598852342129952
@@ -3881,6 +3884,8 @@ MonoBehaviour:
   - {fileID: 1062598237946650}
   - {fileID: 1136848439451688}
   - {fileID: 1061215258684400}
+  - {fileID: 1972197632436296, guid: 739ec48e0ed9a6e4caae6e9bf6ea29e3, type: 2}
+  throwingPoint: {fileID: 1395042479091292}
   teamNo: 0
 --- !u!114 &114767985505990062
 MonoBehaviour:

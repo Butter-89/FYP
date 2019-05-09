@@ -331,6 +331,7 @@ MonoBehaviour:
   explosionParticleSystem: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426,
     type: 2}
   collapse: {fileID: 82154780862772800}
+  isBase: 1
   _Timer: 3
 --- !u!114 &114809877544964604
 MonoBehaviour:

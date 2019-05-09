@@ -37,8 +37,12 @@
           </e>
         </e>
         <e p="EndGame.cs" t="Include" />
-        <e p="EnergyShield.cs" t="Include" />
         <e p="EventManager.cs" t="Include" />
+        <e p="Handpainted Forest Environment Free Sample" t="Include">
+          <e p="Terrain Trees" t="Include">
+            <e p="Readme.txt" t="Include" />
+          </e>
+        </e>
         <e p="JMO Assets" t="Include">
           <e p="!JMO Assets Readme.txt" t="Include" />
           <e p="Cartoon FX Easy Editor" t="Include">
@@ -109,6 +113,11 @@
             <e p="Readme.txt" t="Include" />
           </e>
         </e>
+        <e p="models" t="Include">
+          <e p="AtomicBomb" t="Include">
+            <e p="RotateCam.cs" t="Include" />
+          </e>
+        </e>
         <e p="Readme.txt" t="Include" />
         <e p="RoomListItem.cs" t="Include" />
         <e p="SampleScenes" t="Include">
@@ -129,13 +138,11 @@
             <e p="Skybox-Procedural.shader" t="Include" />
           </e>
         </e>
-        <e p="Satellite Dish" t="Include">
-          <e p="Info.txt" t="Include" />
-        </e>
         <e p="Scripts" t="Include">
           <e p="Ammunition.cs" t="Include" />
           <e p="Buildings" t="Include">
             <e p="Castle.cs" t="Include" />
+            <e p="EnergyShield.cs" t="Include" />
             <e p="Turret" t="Include">
               <e p="Actor.cs" t="Include" />
               <e p="Turret.cs" t="Include" />
