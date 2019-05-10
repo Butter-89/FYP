@@ -180,25 +180,47 @@ public class PlayerUI : NetworkBehaviour {
 
     private void RefreshUI()
     {
-
         elements = elementController.elements;
+        //int currentPointer = elements.Count - 1;
+        
         if (elementController == null)
             return;
-        if (elements.Count == 0)
+
+        if (elements.Count >= 1)
+        {
+            firstElementUI.text = elements[0];
+        }
+
+        if (elements.Count >= 2)
+        {
+            secondElementUI.text = elements[1];
+        }
+
+        if (elements.Count >= 3)
+        {
+            thirdElementUI.text = elements[2];
+        }
+
+        if (elements.Count < 3)
+        {
+            thirdElementUI.text = "None";
+        }
+        if (elements.Count < 2)
+        {
+            secondElementUI.text = "None";
+        }
+        
+        if (elements.Count < 1)
+        {
+            firstElementUI.text = "None";
+        }
+        
+        if (elements.Count <= 0)
         {
             firstElementUI.text = "None";
             secondElementUI.text = "None";
             thirdElementUI.text = "None";
         }
-        
-        if (elements.Count ==1 &&elements[0] != null)
-        {
-            firstElementUI.text = elements[0];
-        }
-        if (elements.Count == 2 && elements[1] != null)
-            secondElementUI.text = elements[1];
-        if (elements.Count == 3 && elements[2] != null)
-            thirdElementUI.text = elements[2];
 
         if (information != null)
         {

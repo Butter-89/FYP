@@ -65,11 +65,18 @@ public class Player : NetworkBehaviour
         {
             return;
         }
+
+        if (currentHealth - _amounts>0)
+        {
+            currentHealth -= _amounts;
+        }
+        else
+        {
+            currentHealth = 0;
+        }
         
-        
-        currentHealth -= _amounts;
         //Debug.Log(transform.name + " now has " + currentHealth +  " health");
-        if (currentHealth <= 0)
+        if (currentHealth == 0)
         {
             Die();
         }
@@ -108,6 +115,18 @@ public class Player : NetworkBehaviour
 	    
         SetDefaults();
         Transform _spawnPosition = NetworkManager.singleton.GetStartPosition();
+        if (gameObject.CompareTag("Team1"))
+        {
+            _spawnPosition = NetworkManager.singleton.startPositions[0];
+        }
+        else if (gameObject.CompareTag("Team2"))
+        {
+            _spawnPosition = NetworkManager.singleton.startPositions[1];
+        }
+        Debug.Log(NetworkManager.singleton.startPositions[1]); 
+        
+        
+        //Transform _spawnPosition = NetworkManager.singleton.GetStartPosition();
         transform.position = _spawnPosition.position;
         transform.rotation = _spawnPosition.rotation;
     }

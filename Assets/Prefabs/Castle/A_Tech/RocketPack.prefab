@@ -239,7 +239,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4384207296568148}
   - component: {fileID: 111600903137327192}
-  - component: {fileID: 54631716374018814}
   m_Layer: 0
   m_Name: AmmoBox
   m_TagString: Untagged
@@ -319,7 +318,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4161443596137496}
-  - component: {fileID: 54566161217696646}
   m_Layer: 0
   m_Name: Oil Barrel (RustyRed)
   m_TagString: Untagged
@@ -335,8 +333,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4357985742054900}
-  - component: {fileID: 65862319436839684}
-  - component: {fileID: 54152688346398948}
   m_Layer: 0
   m_Name: Crate (Box-RopeHandles-Dark)
   m_TagString: Untagged
@@ -505,7 +501,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1538486823914876}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.0137634, y: -220.98, z: -125.78549}
+  m_LocalPosition: {x: 177.90222, y: 14.8, z: 215.49106}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4825399190530900}
@@ -1085,51 +1081,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1488886819768332}
   m_Mesh: {fileID: 4300002, guid: dfcbe840d26d8f34e85b01b9bdb66bfe, type: 3}
---- !u!54 &54152688346398948
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1995506685268800}
-  serializedVersion: 2
-  m_Mass: 5
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!54 &54566161217696646
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1946138343248958}
-  serializedVersion: 2
-  m_Mass: 2
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!54 &54631716374018814
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1648760705485454}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!54 &54907015166387934
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -1157,18 +1108,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.84, y: 2, z: 3.82}
   m_Center: {x: -0.32, y: 0.97, z: -0.06}
---- !u!65 &65862319436839684
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1995506685268800}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 0.49904114, y: 0.49889898, z: 0.5014206}
-  m_Center: {x: -0.0006029606, y: 0.25215018, z: 0.003027022}
 --- !u!82 &82174034483883900
 AudioSource:
   m_ObjectHideFlags: 1
@@ -1347,4 +1286,5 @@ MonoBehaviour:
   explosionParticleSystem: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426,
     type: 2}
   collapse: {fileID: 82174034483883900}
+  isBase: 0
   _Timer: 3

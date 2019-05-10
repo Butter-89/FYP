@@ -161,7 +161,7 @@ public class ElementController : NetworkBehaviour
                 if (elements.Count >= 1)
                 {
                     //Debug.Log("Reloading element:"+elements.Count);
-                    ShiftElement();
+                    //ShiftElement();
                     elements.RemoveAt(elements.Count - 1);
                     transform.GetComponentInChildren<Weapon>().Reload();
                 }
