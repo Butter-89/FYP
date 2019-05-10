@@ -10,6 +10,7 @@ GameObject:
   - component: {fileID: 418706}
   - component: {fileID: 3392546}
   - component: {fileID: 2372994}
+  - component: {fileID: 64334712900304268}
   m_Layer: 0
   m_Name: mountain_canyon_05
   m_TagString: Untagged
@@ -83,3 +84,17 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 157280}
   m_IsPrefabAsset: 1
+--- !u!64 &64334712900304268
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157280}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 709a65d5b687bf3479d7ab28f3f78d90, type: 3}

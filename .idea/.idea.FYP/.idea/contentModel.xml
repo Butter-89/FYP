@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ContentModelStore">
     <e p="C:\Users\msi\.Rider2019.1\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\msi\.Rider2019.1\system\resharper-host\local\Transient\ReSharperHost\v191\SolutionCaches\_FYP.665881027.00" t="ExcludeRecursive" />
+    <e p="C:\Users\msi\.Rider2019.1\system\resharper-host\local\Transient\ReSharperHost\v191\SolutionCaches\_FYP.-1660908550.00" t="ExcludeRecursive" />
     <e p="C:\Users\msi\AppData\local\Android\Sdk\platforms\android-27\data\res" t="IncludeRecursive" />
     <e p="C:\Users\msi\AppData\local\Android\Sdk\sources\android-27" t="IncludeRecursive" />
-    <e p="F:\UnityProjects\FYP" t="IncludeRecursive">
+    <e p="F:\UnityProjects\SD4981\FYP" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
@@ -406,6 +406,7 @@
           </e>
         </e>
         <e p="TurretDamage.cs" t="Include" />
+        <e p="UserGuide.cs" t="Include" />
       </e>
       <e p="FYP.sln" t="IncludeFlat" />
       <e p="obj" t="ExcludeRecursive" />
