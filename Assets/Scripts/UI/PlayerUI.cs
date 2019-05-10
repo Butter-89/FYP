@@ -29,6 +29,9 @@ public class PlayerUI : NetworkBehaviour {
     GameObject userGuide;
 
     [SerializeField]
+    GameObject techTreeUI;
+
+    [SerializeField]
     GameObject endGame;
 
     GameObject team1;
@@ -160,7 +163,13 @@ public class PlayerUI : NetworkBehaviour {
             userGuide.SetActive(!userGuide.activeSelf);
             UserGuide.IsOn = userGuide.activeSelf;
         }
-            
+
+        if (TechTreeUI.IsOn)
+        {
+            techTreeUI.SetActive(!techTreeUI.activeSelf);
+            TechTreeUI.IsOn = techTreeUI.activeSelf;
+        }
+
 
     }
 

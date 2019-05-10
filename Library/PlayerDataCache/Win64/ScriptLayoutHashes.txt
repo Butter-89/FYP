@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-C:/Users/msi/Desktop/Second Prototype/FYP.exe
+C:/Users/胡东旭/Desktop/fypTest/FYP.exe
 SceneListBegin?
 Assets/Scenes/Lobby.unity
 Assets/Scenes/SampleScene.unity
@@ -35,7 +35,7 @@ f6637497451c9a030c421de4a1ad5cdb Unity.TextMeshPro.dll:TMPro.TMP_ScrollbarEventH
 b14b4630cc47b6e9ea8a644551a6a8cc Unity.TextMeshPro.dll:TMPro.TMP_Text
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp-firstpass.dll:.EventSystemChecker
 516c4f000acc939389f35ab17b9d7630 Assembly-CSharp.dll:.BulletHole
-486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.PauseMenu
+7f0ec7cd923502b08fed99d5300bd5e5 Assembly-CSharp.dll:.PauseMenu
 aeb5c23d63e17a8dcdf5fe8da4def7a3 Assembly-CSharp.dll:.WeatherManager
 1b41ce351cba0fc2c95cc2ff762f01a1 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Effects.Hose
 53cefe5d98cadefbab750835e70b89c0 UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
@@ -154,7 +154,7 @@ e7489514a648ce787e3e741d97e0f561 Assembly-CSharp-firstpass.dll:UnityStandardAsse
 382b8ef512fa8d6108723a01b57af65b UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsEventTracker
 d22c788799ee45d8676254eccf20e8b8 UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsTracker
 8b2e24dd05c0c36bfb534c6e39168b21 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.ParticleSystemDestroyer
-c534814d83da59e042d6911ed672f8af Assembly-CSharp.dll:.PlayerUI
+79444c9a4ce3769e8c4bb8fc52c6c8d4 Assembly-CSharp.dll:.PlayerUI
 81c522dff5ed6743b66c189a8b097a2f Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.SimpleMouseRotator
 d75dc834c5dec688db75a55a1724c90f UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
 486cd95c82d8305219c352c06b776e1f UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInput
@@ -271,15 +271,17 @@ e7243432dd281e72011751efc287823c Assembly-CSharp-firstpass.dll:UnityStandardAsse
 2d5613dfea5ebe89d441816537142920 Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.TouchPad
 76d2df27be185e27e116e08df79b3271 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Vehicles.Ball.Ball
 5b83580a22df4ed5e756000935aa4092 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.TimedObjectDestructor
+5839cf3660b2f77d28c540e02974a73e Assembly-CSharp.dll:.RotateCam
 f9321b860fc22820c43b0402a39076f9 Assembly-CSharp.dll:.WFX_Demo_Wall
 e39ce014d06046cc755e4d88993775f4 Assembly-CSharp.dll:.WFX_BulletHoleDecal
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp-firstpass.dll:UnityStandardAssets.Water.GerstnerDisplace
-f396368e0862e46af35b83a9137a833b Assembly-CSharp.dll:.Player
+32543b8daf10ffc40f68da8c225b3ae9 Assembly-CSharp.dll:.Player
 63b1d9ebe2d595f39b6b7350000aa0e6 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Effects.Explosive
 e04611b8715e6833d2bd7010fc6be10b Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
 5b5ad732d2d32a997181b009aa65cfb0 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Water.WaterTile
 4c0c4b565c2225231ba57ed413d2e2e4 Assembly-CSharp.dll:.SpikeTrapDemo
-08b6b64badd3fb9d4d94f438e6ca4ba5 Assembly-CSharp.dll:.Weapon
+f682cdc1b2e3625db00ff5569f6c5bc8 Assembly-CSharp.dll:.Weapon
+7381a5294ed3eae866f7c42df52e4d05 Assembly-CSharp.dll:.UserGuide
 61cf606edf3764912c9acc0224888141 Assembly-CSharp.dll:.TechTest
 e2c48afa9b10244e76e173b4eadb775b Assembly-CSharp.dll:.PlayerController
 2f9af06a78208a67db480e9bfed4a076 Unity.TextMeshPro.dll:TMPro.TextMeshPro
@@ -294,4 +296,3 @@ ec5470f8422a5983bc546b58ba171cca Assembly-CSharp.dll:.CFX_SpawnSystem
 262b6e3aab5e8d4f63222d629f47c9f9 Assembly-CSharp.dll:.EnvironmentManager
 36ed8d92a07a53bf383bc90e377cc388 Assembly-CSharp-firstpass.dll:UnityStandardAssets._2D.PlatformerCharacter2D
 695c9335429d4798b6f74ca73c042ff4 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.AutoMobileShaderSwitch
-5839cf3660b2f77d28c540e02974a73e Assembly-CSharp.dll:.RotateCam

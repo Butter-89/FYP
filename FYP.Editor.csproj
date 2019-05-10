@@ -385,6 +385,7 @@
     <None Include="Assets\Army Bunker\Info.txt" />
     <None Include="Assets\AurynSky\ArenaPacks\Forest Pack\READ ME.txt" />
     <None Include="Assets\Baker House\Readme.txt" />
+    <None Include="Assets\Handpainted Forest Environment Free Sample\Terrain Trees\ReadMe.txt" />
     <None Include="Assets\JMO Assets\!JMO Assets Readme.txt" />
     <None Include="Assets\JMO Assets\Cartoon FX Easy Editor\CartoonFX Easy Editor Readme.txt" />
     <None Include="Assets\JMO Assets\WarFX\!WarFX Readme.txt" />
@@ -405,7 +406,6 @@
     <None Include="Assets\Missile\Doc\ReadMe.txt" />
     <None Include="Assets\Readme.txt" />
     <None Include="Assets\SampleScenes\Shaders\Skybox-Procedural.shader" />
-    <None Include="Assets\Satellite Dish\info.txt" />
     <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />

@@ -14,6 +14,9 @@ public class PauseMenu : MonoBehaviour
     GameObject userGuide;
 
     [SerializeField]
+    GameObject techTreeUI;
+
+    [SerializeField]
     GameObject pauseMenu;
 
     private void Start()
@@ -36,4 +39,15 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(false);
         PauseMenu.IsOn = false;
     }
+
+    public void OpenTechTree()
+    {
+        techTreeUI.SetActive(!techTreeUI.activeSelf);
+        TechTreeUI.IsOn = techTreeUI.activeSelf;
+
+        pauseMenu.SetActive(false);
+        PauseMenu.IsOn = false;
+    }
+
+
 }

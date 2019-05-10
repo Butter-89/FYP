@@ -317,7 +317,6 @@
     <Compile Include="Assets\Dungeon Pack\Scripts\SpikeTrapDemo.cs" />
     <Compile Include="Assets\Dungeon Pack\Scripts\TrapDoorDemo.cs" />
     <Compile Include="Assets\EndGame.cs" />
-    <Compile Include="Assets\EnergyShield.cs" />
     <Compile Include="Assets\EventManager.cs" />
     <Compile Include="Assets\JMO Assets\WarFX\Demo\Assets\CFX_AutoStopLoopedEffect.cs" />
     <Compile Include="Assets\JMO Assets\WarFX\Demo\Assets\CFX_Demo_RandomDir.cs" />
@@ -335,6 +334,7 @@
     <Compile Include="Assets\JMO Assets\WarFX\Spawn System\CFX_SpawnSystem.cs" />
     <Compile Include="Assets\JoinGame.cs" />
     <Compile Include="Assets\LinkToNetworkManager.cs" />
+    <Compile Include="Assets\Models\AtomicBomb\RotateCam.cs" />
     <Compile Include="Assets\RoomListItem.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\MenuSceneLoader.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\SceneAndURLLoader.cs" />
@@ -345,6 +345,7 @@
     <Compile Include="Assets\SampleScenes\Scripts\SlowMoButton.cs" />
     <Compile Include="Assets\Scripts\Ammunition.cs" />
     <Compile Include="Assets\Scripts\Buildings\Castle.cs" />
+    <Compile Include="Assets\Scripts\Buildings\EnergyShield.cs" />
     <Compile Include="Assets\Scripts\Buildings\Turret\Actor.cs" />
     <Compile Include="Assets\Scripts\Buildings\Turret\Turret.cs" />
     <Compile Include="Assets\Scripts\Element\ElementController.cs" />
@@ -375,6 +376,8 @@
     <Compile Include="Assets\SMC Pack 1\Demo\DemoAssets\V_SMC_Camera.cs" />
     <Compile Include="Assets\SMC Pack 1\Demo\DemoAssets\V_SMC_Handler.cs" />
     <Compile Include="Assets\SMC Pack 1\Demo\DemoAssets\V_Text.cs" />
+    <Compile Include="Assets\TechTreeUI.cs" />
+    <Compile Include="Assets\TestingOnMouseOver.cs" />
     <Compile Include="Assets\TurretDamage.cs" />
     <Compile Include="Assets\UserGuide.cs" />
   </ItemGroup>
@@ -382,6 +385,7 @@
     <None Include="Assets\Army Bunker\Info.txt" />
     <None Include="Assets\AurynSky\ArenaPacks\Forest Pack\READ ME.txt" />
     <None Include="Assets\Baker House\Readme.txt" />
+    <None Include="Assets\Handpainted Forest Environment Free Sample\Terrain Trees\ReadMe.txt" />
     <None Include="Assets\JMO Assets\!JMO Assets Readme.txt" />
     <None Include="Assets\JMO Assets\Cartoon FX Easy Editor\CartoonFX Easy Editor Readme.txt" />
     <None Include="Assets\JMO Assets\WarFX\!WarFX Readme.txt" />
@@ -402,7 +406,6 @@
     <None Include="Assets\Missile\Doc\ReadMe.txt" />
     <None Include="Assets\Readme.txt" />
     <None Include="Assets\SampleScenes\Shaders\Skybox-Procedural.shader" />
-    <None Include="Assets\Satellite Dish\info.txt" />
     <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
