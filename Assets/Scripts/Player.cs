@@ -256,7 +256,9 @@ public class Player : NetworkBehaviour
     */
     public void Die()
     {
+        ElementController ec = GetComponent<ElementController>();
         _isDead = true;
+        GetComponent<Animator>().SetTrigger("dead");
         GetComponent<Collider> ().enabled = false;
         //GetComponent<Renderer> ().enabled = false;
         CapsuleCollider _col = GetComponent<CapsuleCollider>();

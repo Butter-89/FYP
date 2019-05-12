@@ -1,4 +1,4 @@
-﻿using System;
+﻿//using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -78,6 +78,8 @@ public class ElementController : NetworkBehaviour
     [SerializeField]
     public System.Collections.Generic.List<string> elements;
 
+    public GameObject[] elementTypes; //1 - wood; 2 - water; 3 - fire
+    
     public string UIInformation;
 
     private bool flag = true;
@@ -85,6 +87,8 @@ public class ElementController : NetworkBehaviour
     private string _buildingType = "";
     [SerializeField] private int teamNo;
     private NetworkIdentity parentIdentity;
+    private PlayerMotor playerMotor;
+    
 
     // Use this for initialization
     void Start () {
@@ -94,6 +98,7 @@ public class ElementController : NetworkBehaviour
         buildRange = 999f;
         player = gameObject;
         techLevel = 0;
+        playerMotor = GetComponent<PlayerMotor>();
         teamNo = GetComponent<TechManager>().teamNo;
         buildingPool = GameObject.Find("Team"+teamNo); //buildingPool is now Team#
         
@@ -116,7 +121,7 @@ public class ElementController : NetworkBehaviour
 	{
        if(isLocalPlayer)
         {
-            if (Input.GetKeyDown("b"))
+            if (Input.GetKeyDown("b") && playerMotor.IsGrounded())
             {
                 //Debug.Log("Build a castle");
                 /* //if(player.transform.position.y<15.1&&player.transform.position.y>15) need improvement
@@ -133,19 +138,30 @@ public class ElementController : NetworkBehaviour
                 //perform building function here
             }
 
-            else if (Input.GetKeyDown("v"))
+            else if (Input.GetKeyDown("v") && elements.Count>0 )
             {
                 //abandon the first element
                 //_woodNumber = 3;
-                ShiftElement();
+                if (elements[elements.Count-1]=="Wood")
+                {
+                    CmdDropElement(0);
+                }
+                else if (elements[elements.Count-1]=="Water")
+                {
+                    CmdDropElement(1);
+                }
+                else if (elements[elements.Count-1]=="Fire")
+                {
+                    CmdDropElement(2);
+                }
+                //ShiftElement();
                 elements.RemoveAt(elements.Count - 1);
-                Debug.Log("Current element cound: " + elements.Count);
+                Debug.Log("Current elements: " + elements.ToString());
             }
             
             else if (Input.GetKeyDown(KeyCode.C))
             {
-                elements.Clear();
-                CounterToZero();
+                CmdDropAllElements();
                 //Debug.Log("Current element number: "+elements.Count);
             }
 
@@ -454,6 +470,39 @@ public class ElementController : NetworkBehaviour
 	
 	}
 
+    [Command]
+    public void CmdDropElement(int type)
+    {
+        
+        Vector3 position = player.transform.position + 
+                           player.transform.forward * 5 + player.transform.up * 2 + 
+                           new Vector3(Random.Range(-5 / 2, 5 / 2), 0, Random.Range(-5 / 2, 5 / 2));
+        var droppedElement = Instantiate(elementTypes[type], position, Quaternion.identity);
+        NetworkServer.Spawn(droppedElement);
+    }
+
+    [Command]
+    public void CmdDropAllElements()
+    {
+        foreach (var element in elements)
+        {
+            if (element=="Wood")
+            {
+                CmdDropElement(0);
+            }
+            else if (element=="Water")
+            {
+                CmdDropElement(1);
+            }
+            else if (element=="Fire")
+            {
+                CmdDropElement(2);
+            }
+        }
+        elements.Clear();
+        CounterToZero();
+    }
+    
     [Command]
     private void CmdSetTeam(GameObject building, int team)
     {

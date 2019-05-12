@@ -30,7 +30,7 @@ GameObject:
   - component: {fileID: 95825598117983936}
   m_Layer: 0
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: Team2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 114684038328117844}
   m_Layer: 0
   m_Name: Turret Found
-  m_TagString: Untagged
+  m_TagString: Team2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -455,12 +455,13 @@ MonoBehaviour:
     canFire: 1
     power: 40
     ShootingDelay: 1
-    radius: 5
+    radius: 20
+    turretSpeed: 50
   targeting:
     aimingSpeed: 1
     aimingDelay: 1
     tagsToFire:
-    - 
+    - Team1
     targets: []
     target: {fileID: 0}
   VFX:
@@ -481,8 +482,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parameters:
-    toughness: 100
-    armor: 50
+    toughness: 125
+    armor: 18
     damageFactor: 0
   VFX:
     damageFX: {fileID: 1579546626485678, guid: 7db58c0e931b44d52826ad1829194c32, type: 2}
@@ -508,7 +509,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1082001790965800}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1.120647

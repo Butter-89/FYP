@@ -240,15 +240,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1930986046245626}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: 0.185, y: 0.177, z: -0.178}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4148611868381614}
   - {fileID: 4087017956337078}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 180, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4769678359264062
 Transform:
   m_ObjectHideFlags: 1
@@ -533,14 +533,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   auto: 1
-  weaponModel: {fileID: 137242, guid: 0c9cb9843774aa84594824df4a09a504, type: 2}
-  raycastStartSpot: {fileID: 4148611868381614}
+  weaponModel: {fileID: 0}
+  raycastStartSpot: {fileID: 0}
   cam: {fileID: 0}
-  isLocalPlayer: 1
+  isLocalPlayer: 0
   range: 9999
   rateOfFire: 1
   ammoCapacity: 4
   shotPerRound: 1
+  _currentAmmo: 0
   reloadTime: 2
   showCurrentAmmo: 1
   accuracy: 80
@@ -553,15 +554,16 @@ MonoBehaviour:
   recoilRotationMax: 0.25
   recoilRecoveryRate: 0.01
   power: 1000
-  forceMultiplier: 1000
+  forceMultiplier: 2000
   fireSound: {fileID: 8300000, guid: 3e869111c632a464390832932c25566c, type: 3}
   reloadSound: {fileID: 8300000, guid: 74c5faf9400b7724bb8101dbc0d6a348, type: 3}
   dryFireSound: {fileID: 8300000, guid: f391be17915927c429dee2a25bbfb5b0, type: 3}
   muzzleFlash: {fileID: 198343751822568862}
   bulletHolePrefabs:
   - {fileID: 100000, guid: 0cbc67bd61063af4e904364139f35b5d, type: 2}
-  projectile: {fileID: 1567115722495346, guid: 826a02b0e4af57e4589d1f9b18a5c5b7, type: 2}
+  projectile: {fileID: 1219335897387764, guid: 321a9a81ba718994ea296b27699232ac, type: 2}
   _player: {fileID: 0}
+  playerAnimator: {fileID: 0}
 --- !u!198 &198231106158611880
 ParticleSystem:
   m_ObjectHideFlags: 1

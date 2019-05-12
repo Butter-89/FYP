@@ -691,7 +691,11 @@ MonoBehaviour:
   dTechLevel: 3
   aTechLevel: 0
   teamNo: 0
+  health: 200
+  armor: 18
+  sinkSpeed: 3
   explosionParticleSystem: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426,
     type: 2}
   collapse: {fileID: 82280328718362992}
+  isBase: 0
   _Timer: 3

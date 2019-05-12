@@ -45,7 +45,7 @@ public class ElementSpawner : NetworkBehaviour {
             {
                 GameObject elementSpawned = Instantiate(Elements[i], spawnPoints[i].position + new Vector3(Random.Range(-size.x / 2, size.x / 2), 0, Random.Range(-size.z / 2, size.z / 2)), Quaternion.identity);
                 NetworkServer.Spawn(elementSpawned);
-                Destroy(elementSpawned, spawnTime * 3);
+                Destroy(elementSpawned, spawnTime * 2);
             }
         }
             

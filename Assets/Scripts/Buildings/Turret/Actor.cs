@@ -70,6 +70,11 @@ public class Actor : MonoBehaviour {
 	
 	public void ReceiveDamage(float damage) {
 
+		if (damage<=parameters.armor)
+		{
+			damage *= 1 - (parameters.armor - damage) / parameters.armor;
+		}
+		
 		if (damage <= parameters.toughness) {
 			
 			parameters.toughness -= damage;

@@ -12,7 +12,7 @@ public enum ExplosionType
 
 public class Projectile : MonoBehaviour
 {
-	public int radius;//Explosion radius
+	public float radius;//Explosion radius
 	public int power;
 	public bool explosive;
 	public ExplosionType projectileType;
@@ -64,7 +64,12 @@ public class Projectile : MonoBehaviour
 
 			if (c.GetComponent<Player>())
 			{
-				c.GetComponent<Player>().RpcTakeDamage(power);
+				c.GetComponent<Player>().CmdDamage(power,c.name);
+			}
+
+			if (c.GetComponent<Rigidbody>())
+			{
+				c.GetComponent<Rigidbody>().AddExplosionForce(power,transform.position,radius);
 			}
 		}
 		var mesh = GetComponentInChildren<MeshRenderer>();

@@ -182,7 +182,7 @@ public class Weapon : NetworkBehaviour {
     //[Client]
     private void Fire()
     {
-        Debug.Log(OpTeam);
+        //Debug.Log(OpTeam);
         // Reset the fireTimer to 0 (for ROF)
         _fireTimer = 0.0f;
 
@@ -254,7 +254,9 @@ public class Weapon : NetworkBehaviour {
                     }
                     else if (hit.collider.GetComponent<Actor>() != null)
                     {
-                        hit.collider.GetComponent<Actor>().ReceiveDamage(power, hit.point);
+                        Debug.Log("Hit turret");
+                            
+                        hit.collider.GetComponent<Actor>().ReceiveDamage(power);
                     }
                 }
                 /*

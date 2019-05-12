@@ -23,6 +23,8 @@ public class TurretParameters {
 	public float ShootingDelay;
 	[Tooltip("Radius of the turret view")]
 	public float radius;
+
+	public float turretSpeed;
 }
 
 [System.Serializable]
@@ -146,10 +148,19 @@ public class Turret : MonoBehaviour { //Change here!!!
 		if (Physics.Raycast (VFX.muzzle.position, VFX.muzzle.transform.forward, out hit, parameters.radius)) {
 			if (CheckTags (hit.collider) == true) {
 				Shot ();
-				//hit.collider.GetComponent<Actor> ().ReceiveDamage (parameters.power, hit.point);
-				string playerID = hit.collider.name;
-				//Debug.Log("Turret hit "+playerID);
-				hit.collider.GetComponent<Player>().CmdDamage(parameters.power,playerID);
+				if (hit.collider.GetComponent<Player>())
+				{
+					//hit.collider.GetComponent<Actor> ().ReceiveDamage (parameters.power, hit.point);
+                    string playerID = hit.collider.name;
+                    //Debug.Log("Turret hit "+playerID);
+                    hit.collider.GetComponent<Player>().CmdDamage(parameters.power,playerID);
+				}
+				else if (hit.collider.GetComponentInChildren<Actor>())
+				{
+					hit.collider.GetComponentInChildren<Actor>().ReceiveDamage(parameters.power);
+				}
+
+				
 			}
 
 			ClearTargets ();	
@@ -168,7 +179,19 @@ public class Turret : MonoBehaviour { //Change here!!!
 		Vector3 delta = targeting.target.transform.position - transform.position;
 		float angle = Vector3.Angle (transform.forward, delta);
 		Vector3 cross = Vector3.Cross (transform.forward, delta);
-		GetComponent<Rigidbody> ().AddTorque (cross * angle * targeting.aimingSpeed);
+		//GetComponent<Rigidbody> ().AddTorque (cross * angle * targeting.aimingSpeed);
+		
+		//gameObject.transform.LookAt(targeting.target.transform);
+		
+		Vector3 offset = (targeting.target.transform.position - transform.position).normalized;
+		Vector3 relPos = targeting.target.transform.position - transform.transform.position;
+		float relAngle = Vector3.Angle(transform.transform.forward, offset);
+		float needTime = relAngle / parameters.turretSpeed;
+		float v = 1;
+		if (needTime > Mathf.Epsilon)
+			v = Time.deltaTime / needTime;
+		Quaternion rotation = Quaternion.LookRotation(relPos, Vector3.up);
+		transform.transform.rotation = Quaternion.Slerp(transform.transform.rotation, rotation, v);
 	}
 
 	#endregion

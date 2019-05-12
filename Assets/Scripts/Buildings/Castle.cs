@@ -10,6 +10,7 @@ public class Castle : NetworkBehaviour
     public int teamNo;//Used to indicate the which team
     //Team 1- No 1, Team 2 - No 2
     [SerializeField] private int health;
+    [SerializeField] private int armor;
     private bool sinking;
     private bool building;
     [SerializeField] private float sinkSpeed = 3f;
@@ -21,7 +22,7 @@ public class Castle : NetworkBehaviour
     public float _Timer = 3f;
 
     void Start () {
-        health = 100;
+        //health = 100;
         sinking = false;
         destroyed = false;
         building = false;
@@ -51,6 +52,11 @@ public class Castle : NetworkBehaviour
 	
     public void CmdDamage(int dmg)
     {
+        if (dmg<=armor)
+        {
+            dmg *= 1 - (armor - dmg) / armor;
+        }
+
         Debug.Log("Castle: "+ transform.name + "hit with damage: "+ dmg);
         CmdUpdateHealth(dmg);
     }

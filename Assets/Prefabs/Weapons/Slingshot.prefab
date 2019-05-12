@@ -45,7 +45,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4448169399112030
 Transform:
   m_ObjectHideFlags: 1
@@ -65,14 +65,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1633720098204990}
-  m_LocalRotation: {x: 0, y: 0.5, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: -0.0000036656857, y: -0.187, z: -0.034}
+  m_LocalRotation: {x: 0.97629607, y: 0, z: -0.2164396, w: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4448169399112030}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 60, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 25, z: 0}
 --- !u!23 &23587724218258908
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -318,14 +318,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   auto: 1
-  weaponModel: {fileID: 137242, guid: 0c9cb9843774aa84594824df4a09a504, type: 2}
-  raycastStartSpot: {fileID: 4448169399112030}
+  weaponModel: {fileID: 0}
+  raycastStartSpot: {fileID: 0}
   cam: {fileID: 0}
-  isLocalPlayer: 1
+  isLocalPlayer: 0
   range: 9999
   rateOfFire: 1
   ammoCapacity: 20
   shotPerRound: 1
+  _currentAmmo: 0
   reloadTime: 2
   showCurrentAmmo: 1
   accuracy: 80
@@ -347,3 +348,4 @@ MonoBehaviour:
   - {fileID: 100000, guid: 0cbc67bd61063af4e904364139f35b5d, type: 2}
   projectile: {fileID: 159028, guid: 6152af4de69f69c4a82745319fb05467, type: 2}
   _player: {fileID: 0}
+  playerAnimator: {fileID: 0}

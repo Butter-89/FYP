@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 159028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -124,8 +124,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95ce3de52331fef4ca3ae8b94dcf929e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 1
-  power: 40
+  radius: 0.1
+  power: 10
   explosive: 0
+  projectileType: 0
   explosionParticle: {fileID: 0}
   explosionAudio: {fileID: 0}

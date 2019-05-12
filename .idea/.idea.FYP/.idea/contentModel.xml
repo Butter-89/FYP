@@ -30,6 +30,7 @@
         <e p="Baker House" t="Include">
           <e p="Readme.txt" t="Include" />
         </e>
+        <e p="CameraController.cs" t="Include" />
         <e p="Dungeon Pack" t="Include">
           <e p="Scripts" t="Include">
             <e p="SpikeTrapDemo.cs" t="Include" />
@@ -396,6 +397,8 @@
             <e p="WaypointProgressTracker.cs" t="Include" />
           </e>
         </e>
+        <e p="TechTreeUI.cs" t="Include" />
+        <e p="TestingOnMouseOver.cs" t="Include" />
         <e p="Toon_Soldiers" t="Include">
           <e p="ToonSoldiers_WW2" t="Include">
             <e p="models" t="Include">

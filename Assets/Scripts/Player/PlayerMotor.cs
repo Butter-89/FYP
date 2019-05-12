@@ -49,7 +49,7 @@ public class PlayerMotor : MonoBehaviour {
 	void FixedUpdate () {
         //Debug.Log("Is grounded? "+IsGrounded());
         PerformMovement();
-        PerformRotation();
+        //PerformRotation();
         if (IsGrounded())
         {
             anim.SetBool("Grounded", true);
@@ -88,7 +88,7 @@ public class PlayerMotor : MonoBehaviour {
 
         if (camera != null)
         {
-            camera.transform.localRotation = Quaternion.Euler(cameraTilt);
+            //camera.transform.localRotation = Quaternion.Euler(cameraTilt);
         }
     }
 
@@ -112,7 +112,7 @@ public class PlayerMotor : MonoBehaviour {
 
     }
 
-    bool IsGrounded()
+    public bool IsGrounded()
     {
         return Physics.Raycast(transform.position, -Vector3.up, margin);
     }

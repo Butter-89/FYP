@@ -251,8 +251,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 5
-  power: 1000
+  power: 35
   explosive: 1
+  projectileType: 0
   explosionParticle: {fileID: 19800008, guid: 7075bd5fe1480184695a32611c15da57, type: 2}
   explosionAudio: {fileID: 82412488225359138}
 --- !u!114 &114720078715146522
