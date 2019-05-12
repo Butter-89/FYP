@@ -135,7 +135,7 @@ public class Weapon : NetworkBehaviour {
 	void Update () {
         _currentAccuracy = Mathf.Lerp(_currentAccuracy, accuracy, accuracyRecoverRate * Time.deltaTime);
         _fireTimer += Time.deltaTime;
-        if(isLocalPlayer&&!PauseMenu.IsOn&&!EndGame.IsOn)
+        if(isLocalPlayer&&!PauseMenu.IsOn&&!EndGame.IsOn&&!UserGuide.IsOn&&!TechTreeUI.IsOn)
             CheckForUserInput();
         //control the recoil "animation".
         if (recoil)

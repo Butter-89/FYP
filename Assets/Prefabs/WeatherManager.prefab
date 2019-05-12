@@ -39,6 +39,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4441138895570144}
   - component: {fileID: 114816579160044938}
+  - component: {fileID: 114013546506501506}
   m_Layer: 0
   m_Name: WeatherManager
   m_TagString: Untagged
@@ -135,6 +136,38 @@ Transform:
   m_Father: {fileID: 4441138895570144}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114013546506501506
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1794977572487172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 126
+    i1: 202
+    i2: 89
+    i3: 135
+    i4: 79
+    i5: 250
+    i6: 169
+    i7: 84
+    i8: 40
+    i9: 111
+    i10: 114
+    i11: 4
+    i12: 183
+    i13: 202
+    i14: 103
+    i15: 100
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114546960612777048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -176,6 +209,9 @@ MonoBehaviour:
   _sunCloudsParticleSystem: {fileID: 198731852858419270}
   _mistParticleSystem: {fileID: 198067623691051348}
   _eruptionParticleSystem: {fileID: 198877926946395470}
+  skyboxList:
+  - {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 0}
   _weatherState: 0
 --- !u!198 &198067623691051348
 ParticleSystem:

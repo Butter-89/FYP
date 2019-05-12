@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeatherManager : MonoBehaviour {
+using UnityEngine.Networking;
+
+public class WeatherManager : NetworkBehaviour {
 
     public float _switchWeatherTimer = 0f;
     public float _resetWeatherTimer = 10f;
@@ -19,7 +21,8 @@ public class WeatherManager : MonoBehaviour {
     public Material[] skyboxList;
     private int _skyboxNumber;
     public WeatherStates _weatherState;
-    private int _switchWeather;
+    [SyncVar]
+    public int _switchWeather;
 
     public enum WeatherStates
     {
@@ -89,7 +92,10 @@ public class WeatherManager : MonoBehaviour {
 
     void PickWeather()
     {
-        _switchWeather = Random.Range(0, 3);
+        if(isServer)
+        {
+            _switchWeather = Random.Range(0, 3);
+        }
 
         _sunCloudsParticleSystem.enableEmission = false;
         _mistParticleSystem.enableEmission = false;
