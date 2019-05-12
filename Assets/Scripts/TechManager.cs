@@ -146,6 +146,8 @@ public class TechManager : NetworkBehaviour {
 		_currentWeapon = weaponNo-1;
 		weaponCategory[_currentWeapon].gameObject.SetActive(true);
 		_player.activeWeapon = _currentWeapon;
+		
+		
 	}
 
 }

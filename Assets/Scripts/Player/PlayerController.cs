@@ -8,6 +8,13 @@ public class PlayerController : MonoBehaviour {
     private float speed = 5f;
     [SerializeField]
     private float lookSensitivity = 3f;
+    private bool moving;
+
+    private Animator animator;
+    
+    [SerializeField] private float m_StickToGroundForce;
+
+    private CharacterController _charCtrl;
 
     public TechManager tm;
     
@@ -22,9 +29,10 @@ public class PlayerController : MonoBehaviour {
 
     void Start () {
         motor = GetComponent<PlayerMotor>();
+        animator = GetComponent<Animator>();
         tm = GetComponentInChildren<TechManager>();
         isLocalPlayer = true;
-
+        _charCtrl = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         
         Weapon[] allWeapons = transform.GetComponentsInChildren<Weapon>();
@@ -56,6 +64,8 @@ public class PlayerController : MonoBehaviour {
         float xMove = Input.GetAxisRaw("Horizontal");
         float zMove = Input.GetAxisRaw("Vertical");
 
+        
+        
         Vector3 moveHorizontal = transform.right * xMove;
         Vector3 moveVertical = transform.forward * zMove;
 
@@ -69,14 +79,28 @@ public class PlayerController : MonoBehaviour {
         Vector3 _rotation = new Vector3(0f, yRot, 0f) * lookSensitivity;
         Vector3 _cameraTilt = new Vector3(xRot, 0f, 0f) ;
         Vector3 _velocity = (moveHorizontal + moveVertical).normalized * speed;
+        
+        if (xMove == 0f && zMove == 0f)
+        {
+            animator.SetBool("moving",false);
+        }
+        else
+        {
+            animator.SetBool("moving",true);
+        }
+		
+        animator.SetFloat("inputH", xMove);
+        animator.SetFloat("inputV",zMove);
 
         
         motor.Move(_velocity);
         motor.Rotate(_rotation);
         motor.Tilt(_cameraTilt);
-
-        if (Input.GetButtonDown("Jump"))
+        //Debug.Log("Character is grounded: "+_charCtrl.isGrounded);
+        if (Input.GetButtonDown("Jump") )
         {
+            //_velocity.y = jumpSpeed;
+            
             motor.PerformJump(_velocity);
         }
 

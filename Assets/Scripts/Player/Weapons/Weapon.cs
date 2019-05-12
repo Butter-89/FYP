@@ -90,6 +90,7 @@ public class Weapon : NetworkBehaviour {
     [SerializeField] private Player _player;
     private NetworkIdentity _ni;
     private string OpTeam;
+    public Animator playerAnimator;
     void Start ()
     {
         _pool = GameObject.FindObjectOfType<BulletHole>();
@@ -115,9 +116,10 @@ public class Weapon : NetworkBehaviour {
 
 
         _player = GetComponentInParent<Player>();
+        //playerAnimator = GetComponentInParent<Animator>();
         _ni = _player.GetComponent<NetworkIdentity>();
 
-        if (gameObject.CompareTag("Team1"))
+        if (_player.gameObject.CompareTag("Team1"))
         {
             OpTeam = "Team2";
         }
@@ -180,7 +182,7 @@ public class Weapon : NetworkBehaviour {
     //[Client]
     private void Fire()
     {
-        
+        Debug.Log(OpTeam);
         // Reset the fireTimer to 0 (for ROF)
         _fireTimer = 0.0f;
 
@@ -243,6 +245,7 @@ public class Weapon : NetworkBehaviour {
                     Instantiate(bulletHoleToUse, hit.point, Quaternion.LookRotation(hit.normal));
                 }
 
+                
                 if (hit.collider.CompareTag(OpTeam))
                 {
                     if (hit.collider.GetComponent<Player>() != null)
@@ -276,6 +279,8 @@ public class Weapon : NetworkBehaviour {
 
         // Play the gunshot sound
         _player.CmdSyncShotEffect();
+        //playerAnimator.SetBool("firing",true);
+        playerAnimator.SetTrigger("shooting");
     }
 
     
@@ -318,13 +323,14 @@ public class Weapon : NetworkBehaviour {
         var Py = position.y;
         var Pz = position.z;
 
-        var rotation = raycastStartSpot.rotation;
+        var rotation = cam.transform.rotation;  //raycastStartSpot.rotation;
         var Qx = rotation.x;
         var Qy = rotation.y;
         var Qz = rotation.z;
         var W = rotation.w;
         
         _player.CmdGenerateProjectile(Px,Py,Pz,Qx,Qy,Qz,W);
+        playerAnimator.SetTrigger("shooting");
         /*
         //var newProjectile = Instantiate(projectile, raycastStartSpot.transform.position, Quaternion.LookRotation(cam.transform.forward),raycastStartSpot.transform);
         var newProjectile = Instantiate(projectile, raycastStartSpot.transform.position, raycastStartSpot.rotation);

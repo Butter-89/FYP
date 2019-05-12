@@ -6,10 +6,13 @@ using UnityEngine;
 public class PlayerMotor : MonoBehaviour {
     public ElementManager eManager;
 
+    private Animator anim;
     private Vector3 velocity = Vector3.zero;
     private Vector3 rotation = Vector3.zero;
     private Vector3 cameraTilt = Vector3.zero;
-    private float margin = 0.2f;
+    [SerializeField] private float margin = 0.2f;
+    [SerializeField] private float m_StickToGroundForce;
+    [SerializeField] private float m_GravityMultiplier;
     private bool floating = false;
     private Rigidbody rb;
     [SerializeField]
@@ -21,11 +24,16 @@ public class PlayerMotor : MonoBehaviour {
 
 	void Start () {
         rb = GetComponent<Rigidbody>();
+        anim = GetComponent<Animator>();
         //character = GetComponent<CharacterController>();
-	}
+    }
 
     public void Move(Vector3 _velocity)
     {
+        if (!IsGrounded())
+        {
+            _velocity += Physics.gravity * m_GravityMultiplier * Time.fixedDeltaTime;
+        }
         velocity = _velocity;
     }
 
@@ -39,12 +47,17 @@ public class PlayerMotor : MonoBehaviour {
     }
 	
 	void FixedUpdate () {
-        if(IsGrounded())
-        {
-            PerformMovement();
-        }
-        
+        //Debug.Log("Is grounded? "+IsGrounded());
+        PerformMovement();
         PerformRotation();
+        if (IsGrounded())
+        {
+            anim.SetBool("Grounded", true);
+        }
+        else
+        {
+            anim.SetBool("Grounded",false);
+        }
         //Debug.Log(IsGrounded());
         //castleBuilt = eManager.CastleBuilt();
         //Debug.Log(castleBuilt);
@@ -62,7 +75,8 @@ public class PlayerMotor : MonoBehaviour {
 
     void PerformMovement()
     {
-        if(velocity != Vector3.zero && !floating)
+        
+        if(velocity != Vector3.zero)
         {
             rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
         }
@@ -90,7 +104,11 @@ public class PlayerMotor : MonoBehaviour {
             }
         }
         else*/
+        if (IsGrounded())
+        {
             rb.velocity = Vector3.up * jumpHeight + _velocity;
+        }
+            
 
     }
 

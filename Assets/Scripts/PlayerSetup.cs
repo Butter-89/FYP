@@ -64,6 +64,8 @@ public class PlayerSetup : NetworkBehaviour {
         base.OnStartClient();
         string _netID = GetComponent<NetworkIdentity>().netId.ToString();
         Player _player = GetComponent<Player>();
+        NetworkAnimator netAnim = GetComponent<NetworkAnimator>();
+        //netAnim.SetParameterAutoSend(0,true);
         GameManager.RegisterPlayer(_netID, _player);
 
 

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -28,10 +29,11 @@ public class Player : NetworkBehaviour
     public int activeWeapon;
 
     private GameObject projectile;
-
+    private Animator playerAnimator;
     public void Setup()
     {
-        activeWeapon = 0;   //for testing, the default weapon is pistol (1)
+        playerAnimator = GetComponent<Animator>();
+        //activeWeapon = 0;   for testing, the default weapon is pistol (1)
         wasEnabled = new bool[disableOnDeath.Length];
         for (int i = 0; i < wasEnabled.Length; i++)
         {
@@ -43,6 +45,11 @@ public class Player : NetworkBehaviour
     public int GetCurrentHP()
     {
         return currentHealth;
+    }
+
+    private void LateUpdate()
+    {
+        CmdUpdateWeapon(activeWeapon);
     }
     /*
         private void Update()
@@ -226,6 +233,12 @@ public class Player : NetworkBehaviour
     private void RpcUpdateWeapon(int weapon)
     {
         activeWeapon = weapon;
+        for (int i = 1; i < weapons.Length+1; i++)
+        {
+            playerAnimator.SetLayerWeight(i,0);
+        }
+        playerAnimator.SetLayerWeight(1+activeWeapon,1);
+        
     }
     /*
    [Command]
