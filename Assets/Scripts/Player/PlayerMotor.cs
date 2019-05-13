@@ -13,18 +13,26 @@ public class PlayerMotor : MonoBehaviour {
     [SerializeField] private float margin = 0.2f;
     [SerializeField] private float m_StickToGroundForce;
     [SerializeField] private float m_GravityMultiplier;
+    [SerializeField] private float rotationSpeed;
     private bool floating = false;
     private Rigidbody rb;
     [SerializeField]
     private Camera camera;
 
+    private float xMove, zMove;
+    
+
     public float jumpHeight;
+
+    public Transform target;
     //private CharacterController character;
     private bool castleBuilt = false;
+    private PlayerController _controller;
 
 	void Start () {
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+        _controller = GetComponent<PlayerController>();
         //character = GetComponent<CharacterController>();
     }
 
@@ -48,8 +56,13 @@ public class PlayerMotor : MonoBehaviour {
 	
 	void FixedUpdate () {
         //Debug.Log("Is grounded? "+IsGrounded());
+        xMove = _controller.xMove;
+        zMove = _controller.zMove;
+        
         PerformMovement();
-        //PerformRotation();
+        PerformRotation();
+        //CamControl(xMove,zMove);
+        
         if (IsGrounded())
         {
             anim.SetBool("Grounded", true);
@@ -85,11 +98,27 @@ public class PlayerMotor : MonoBehaviour {
     void PerformRotation()
     {
         rb.MoveRotation(rb.rotation * Quaternion.Euler(rotation));
-
         if (camera != null)
         {
+            target.localRotation = Quaternion.Euler(cameraTilt);
+        }
+        
+    }
+    
+    private void CamControl(float _mouseX, float _mouseY)
+    {
+        if (camera != null)
+        {
+            _mouseX += Input.GetAxis("Mouse X") * rotationSpeed;
+            _mouseY -= Input.GetAxis("Mouse Y") * rotationSpeed;
+            _mouseY = Mathf.Clamp(_mouseY, -35, 35);
+		
+            transform.LookAt(target);
+            target.rotation = Quaternion.Euler(_mouseY, _mouseX, 0);
+            //player.rotation=Quaternion.Euler(0,_mouseX,0);
             //camera.transform.localRotation = Quaternion.Euler(cameraTilt);
         }
+        
     }
 
     public void PerformJump(Vector3 _velocity)

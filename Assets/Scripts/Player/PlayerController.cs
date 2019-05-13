@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private Camera cam;
 
+    public float xMove, zMove;
+
 
     void Start () {
         motor = GetComponent<PlayerMotor>();
@@ -61,8 +63,8 @@ public class PlayerController : MonoBehaviour {
         //WASD
 
 
-        float xMove = Input.GetAxisRaw("Horizontal");
-        float zMove = Input.GetAxisRaw("Vertical");
+        xMove = Input.GetAxisRaw("Horizontal");
+        zMove = Input.GetAxisRaw("Vertical");
 
         
         
@@ -72,7 +74,7 @@ public class PlayerController : MonoBehaviour {
         //Mouse control
         yRot = Input.GetAxisRaw("Mouse X");
         xRot -= Input.GetAxisRaw("Mouse Y") * lookSensitivity;
-        xRot = Mathf.Clamp(xRot, -60f, 60f);
+        xRot = Mathf.Clamp(xRot, -35f, 35f);
         
         //Perform movement & rotation
 
