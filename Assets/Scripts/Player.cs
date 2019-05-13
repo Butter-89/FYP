@@ -230,12 +230,12 @@ public class Player : NetworkBehaviour
         activeWeapon = weapon;
         for (int i = 1; i < playerAnimator.layerCount; i++)
         {
-            //Debug.Log("Animator layer "+playerAnimator.GetLayerName(i));
+            //Debug.Log("Animator layer "+playerAnimator.GetLayerName(i)); 
             playerAnimator.SetLayerWeight(i,0);
         }
-        playerAnimator.SetLayerWeight(activeWeapon,1);
+        playerAnimator.SetLayerWeight(activeWeapon+1,1);
     }
-
+    //active weapon: start from 0. Tech level: start from 0 and max 3. 
     [ClientRpc]
     public void RpcUpdateWeapon(int weapon)
     {
@@ -244,7 +244,7 @@ public class Player : NetworkBehaviour
         {
             playerAnimator.SetLayerWeight(i,0);
         }
-        playerAnimator.SetLayerWeight(activeWeapon,1);
+        playerAnimator.SetLayerWeight(activeWeapon+1,1);
         
     }
 
@@ -255,7 +255,7 @@ public class Player : NetworkBehaviour
         {
             playerAnimator.SetLayerWeight(i,0);
         }
-        playerAnimator.SetLayerWeight(activeWeapon,1);
+        playerAnimator.SetLayerWeight(activeWeapon+1,1);
     }
     /*
    [Command]

@@ -30,9 +30,9 @@ public class TechManager : NetworkBehaviour {
         techDirection = 0;
         techLevel = 0;  //Now that this script controls the weapon, the tech level here is A-Tech Level
         _bestWeaponLevel = 0;
-        _currentWeapon = 0;
+        _currentWeapon = 0;  //currentWeapon from 0-3
         CmdCheckLevel();
-        maxTechLevel = 3; //temporarily max tech level = 3
+        maxTechLevel = 3; //temporarily max tech level = 3 for testing purpose
         buildingPool = GameObject.Find("Team"+teamNo);
         //Debug.Log("Team"+teamNo);
 
@@ -45,19 +45,19 @@ public class TechManager : NetworkBehaviour {
 		//Change weapon by pressing the alpha number keys
 		if (Input.GetKeyDown(KeyCode.Alpha1)&&_bestWeaponLevel>=0)
 		{
-			ChangeWeapon(1);
+			ChangeWeapon(0);
 		}
 		if (Input.GetKeyDown(KeyCode.Alpha2)&&_bestWeaponLevel>=1)
 		{
-			ChangeWeapon(2);
+			ChangeWeapon(1);
 		}
 		if (Input.GetKeyDown(KeyCode.Alpha3)&&_bestWeaponLevel>=2)
 		{
-			ChangeWeapon(3);
+			ChangeWeapon(2);
 		}
 		if (Input.GetKeyDown(KeyCode.Alpha4)&&_bestWeaponLevel>=3)
 		{
-			ChangeWeapon(4);
+			ChangeWeapon(3);
 		}
 
 		if (Input.GetKeyDown(KeyCode.G))
@@ -102,7 +102,7 @@ public class TechManager : NetworkBehaviour {
 		else if (isServer)
 		{
 			Debug.Log("Server client update weapon");
-			_player.RpcUpdateWeapon(techLevel+1);
+			_player.RpcUpdateWeapon(techLevel);
 		}
 	}
 	
@@ -167,7 +167,7 @@ public class TechManager : NetworkBehaviour {
 		_player = GetComponent<Player>();
 		weaponCategory[_currentWeapon].gameObject.SetActive(false);
 
-		_currentWeapon = weaponNo-1;
+		_currentWeapon = weaponNo;
 		weaponCategory[_currentWeapon].gameObject.SetActive(true);
 		_player.activeWeapon = _currentWeapon;
 		//RpcChangeWeapon(weaponNo);
@@ -179,7 +179,7 @@ public class TechManager : NetworkBehaviour {
 		_player = GetComponent<Player>();
 		weaponCategory[_currentWeapon].gameObject.SetActive(false);
 
-		_currentWeapon = weaponNo-1;
+		_currentWeapon = weaponNo;
 		weaponCategory[_currentWeapon].gameObject.SetActive(true);
 		_player.activeWeapon = _currentWeapon;
 	}
@@ -189,7 +189,7 @@ public class TechManager : NetworkBehaviour {
 		_player = GetComponent<Player>();
 		weaponCategory[_currentWeapon].gameObject.SetActive(false);
 
-		_currentWeapon = weaponNo-1;
+		_currentWeapon = weaponNo;
 		weaponCategory[_currentWeapon].gameObject.SetActive(true);
 		_player.activeWeapon = _currentWeapon;
 	}

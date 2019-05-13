@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-C:/Users/胡东旭/Desktop/fypTest/FYP.exe
+C:/Users/msi/Desktop/FinalVersion/FYP.exe
 SceneListBegin?
 Assets/Scenes/Lobby.unity
 Assets/Scenes/SampleScene.unity

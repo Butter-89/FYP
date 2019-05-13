@@ -3863,7 +3863,6 @@ MonoBehaviour:
   - {fileID: 1844743335546264}
   - {fileID: 1681449922094584}
   - {fileID: 1766587422319486}
-  - {fileID: 1972197632436296, guid: 739ec48e0ed9a6e4caae6e9bf6ea29e3, type: 2}
   throwingPoint: {fileID: 0}
   teamNo: 0
 --- !u!114 &114759801623084970
