@@ -133,17 +133,20 @@ public class ElementController : NetworkBehaviour
             {
                 //abandon the first element
                 //_woodNumber = 3;
+                Vector3 position = player.transform.position +
+                           player.transform.forward * 5 + player.transform.up * 2 +
+                           new Vector3(Random.Range(-5 / 2, 5 / 2), 0, Random.Range(-5 / 2, 5 / 2));
                 if (elements[elements.Count-1]=="Wood")
                 {
-                    CmdDropElement(0);
+                    CmdDropElement(0, position);
                 }
                 else if (elements[elements.Count-1]=="Water")
                 {
-                    CmdDropElement(1);
+                    CmdDropElement(1, position);
                 }
                 else if (elements[elements.Count-1]=="Fire")
                 {
-                    CmdDropElement(2);
+                    CmdDropElement(2, position);
                 }
                 //ShiftElement();
                 elements.RemoveAt(elements.Count - 1);
@@ -152,7 +155,10 @@ public class ElementController : NetworkBehaviour
             
             else if (Input.GetKeyDown(KeyCode.C))
             {
-                CmdDropAllElements();
+                Vector3 position = player.transform.position +
+                           player.transform.forward * 5 + player.transform.up * 2 +
+                           new Vector3(Random.Range(-5 / 2, 5 / 2), 0, Random.Range(-5 / 2, 5 / 2));
+                DropAllElements(position);
                 //Debug.Log("Current element number: "+elements.Count);
             }
 
@@ -457,32 +463,29 @@ public class ElementController : NetworkBehaviour
 	}
 
     [Command]
-    public void CmdDropElement(int type)
-    {
-        
-        Vector3 position = player.transform.position + 
-                           player.transform.forward * 5 + player.transform.up * 2 + 
-                           new Vector3(Random.Range(-5 / 2, 5 / 2), 0, Random.Range(-5 / 2, 5 / 2));
+    public void CmdDropElement(int type, Vector3 position)
+    { 
         var droppedElement = Instantiate(elementTypes[type], position, Quaternion.identity);
         NetworkServer.Spawn(droppedElement);
     }
-
-    [Command]
-    public void CmdDropAllElements()
+    
+    public void DropAllElements(Vector3 position)
     {
         foreach (var element in elements)
         {
             if (element=="Wood")
             {
-                CmdDropElement(0);
+                CmdDropElement(0, position );
+                position = position + new Vector3(Random.Range(-5/2, 5/2), 0, Random.Range(-5/2, 5/2));
             }
             else if (element=="Water")
             {
-                CmdDropElement(1);
+                CmdDropElement(1, position );
+                position = position + new Vector3(Random.Range(-5 / 2, 5 / 2), 0, Random.Range(-5 / 2, 5 / 2));
             }
             else if (element=="Fire")
             {
-                CmdDropElement(2);
+                CmdDropElement(2, position );
             }
         }
         elements.Clear();
