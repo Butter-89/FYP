@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 5
-  power: 35
+  power: 50
   explosive: 1
   projectileType: 0
   explosionParticle: {fileID: 19800008, guid: 7075bd5fe1480184695a32611c15da57, type: 2}

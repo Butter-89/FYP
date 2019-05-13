@@ -27,15 +27,16 @@ public class EnergyShield : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
+		//Debug.Log("Collided");
 		if (other.GetComponent<Projectile>())
 		{
 			//Debug.Log("Collider center: "+gameObject.transform.position+" Object position: "+other.transform.position);
 			float distance = Vector3.Distance(other.transform.position, gameObject.transform.position);
-			float radius = _shield.radius * gameObject.transform.localScale.x / 5; //just trying to figure out how to calculate
-			//Debug.Log("Shield radius: " + radius+" Distance: "+distance);
+			float radius = _shield.radius * gameObject.transform.localScale.x / 5.3f; //just trying to figure out how to calculate
+			Debug.Log("Shield radius: " + radius+" Distance: "+distance);
 			if (distance>=radius)
 			{
-				//Debug.Log("Inside the shield!");
+				Debug.Log("Outside the shield!");
 				other.GetComponent<Projectile>().Deactivate();
 			}
 

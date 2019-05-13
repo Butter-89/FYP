@@ -324,7 +324,7 @@ MonoBehaviour:
   isLocalPlayer: 0
   range: 9999
   rateOfFire: 1
-  ammoCapacity: 20
+  ammoCapacity: 5
   shotPerRound: 1
   _currentAmmo: 0
   reloadTime: 2

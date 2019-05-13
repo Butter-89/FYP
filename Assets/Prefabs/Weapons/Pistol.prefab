@@ -509,7 +509,7 @@ MonoBehaviour:
   cam: {fileID: 0}
   isLocalPlayer: 0
   range: 20
-  rateOfFire: 8
+  rateOfFire: 4
   ammoCapacity: 7
   shotPerRound: 1
   _currentAmmo: 0
