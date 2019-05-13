@@ -241,8 +241,8 @@ public class ElementController : NetworkBehaviour
             {
                 //Debug.Log(elements.Count);
                 //other.gameObject.SetActive(false);
-                NetworkServer.Destroy(other.gameObject);
                 //NetworkServer.RegisterHandler();
+                CmdDeleteElement(other.gameObject);
                 var elementType = other.GetComponent<ElementType>().type;
                 elements.Add(elementType);
                 //Debug.Log(elements[elements.Count-1]);
@@ -251,6 +251,11 @@ public class ElementController : NetworkBehaviour
         }
 		
 	}
+    [Command]
+    void CmdDeleteElement(GameObject _element)
+    {
+        NetworkServer.Destroy(_element);
+    }
 
     [Command]
     void CmdDebugTest()
