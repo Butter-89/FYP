@@ -45,24 +45,24 @@ public class TechManager : NetworkBehaviour {
 		//Change weapon by pressing the alpha number keys
 		if (Input.GetKeyDown(KeyCode.Alpha1)&&_bestWeaponLevel>=0)
 		{
-			CmdChangeWeapon(1);
+			ChangeWeapon(1);
 		}
 		if (Input.GetKeyDown(KeyCode.Alpha2)&&_bestWeaponLevel>=1)
 		{
-			CmdChangeWeapon(2);
+			ChangeWeapon(2);
 		}
 		if (Input.GetKeyDown(KeyCode.Alpha3)&&_bestWeaponLevel>=2)
 		{
-			CmdChangeWeapon(3);
+			ChangeWeapon(3);
 		}
 		if (Input.GetKeyDown(KeyCode.Alpha4)&&_bestWeaponLevel>=3)
 		{
-			CmdChangeWeapon(4);
+			ChangeWeapon(4);
 		}
 
 		if (Input.GetKeyDown(KeyCode.G))
 		{
-			Instantiate(weaponCategory[4], throwingPoint.transform.position, Quaternion.identity);
+			//Instantiate(weaponCategory[4], throwingPoint.transform.position, Quaternion.identity);
 		}
 		if (Input.GetKeyDown("t"))
 		{
@@ -102,7 +102,7 @@ public class TechManager : NetworkBehaviour {
 		else if (isServer)
 		{
 			Debug.Log("Server client update weapon");
-			_player.RpcUpdateWeapon(techLevel);
+			_player.RpcUpdateWeapon(techLevel+1);
 		}
 	}
 	
@@ -142,14 +142,27 @@ public class TechManager : NetworkBehaviour {
 		_player.activeWeapon = _currentWeapon;
 	}
 
-	[Command]
-	public void CmdChangeWeapon(int weaponNo)
+	public void ChangeWeapon(int weaponNo)
 	{
-		RpcChangeWeapon(weaponNo);
+		if (isClient && !isServer)
+		{
+			Debug.Log("Client change weapon");
+			LocalChangeWeapon(weaponNo);
+			CmdChangeWeapon(weaponNo);
+			_player.CmdUpdateWeapon(weaponNo);
+			_player.UpdateWeapon(weaponNo);
+		}
+		else if (isServer)
+		{
+			Debug.Log("Server client change weapon");
+			//LocalChangeWeapon(weaponNo);
+			RpcChangeWeapon(weaponNo);
+			_player.RpcUpdateWeapon(weaponNo);
+		}
 	}
 
-	[ClientRpc]
-	private void RpcChangeWeapon(int weaponNo)
+	[Command]
+	public void CmdChangeWeapon(int weaponNo)
 	{
 		_player = GetComponent<Player>();
 		weaponCategory[_currentWeapon].gameObject.SetActive(false);
@@ -157,8 +170,28 @@ public class TechManager : NetworkBehaviour {
 		_currentWeapon = weaponNo-1;
 		weaponCategory[_currentWeapon].gameObject.SetActive(true);
 		_player.activeWeapon = _currentWeapon;
-		
-		
+		//RpcChangeWeapon(weaponNo);
 	}
 
+	[ClientRpc]
+	public void RpcChangeWeapon(int weaponNo)
+	{
+		_player = GetComponent<Player>();
+		weaponCategory[_currentWeapon].gameObject.SetActive(false);
+
+		_currentWeapon = weaponNo-1;
+		weaponCategory[_currentWeapon].gameObject.SetActive(true);
+		_player.activeWeapon = _currentWeapon;
+	}
+
+	public void LocalChangeWeapon(int weaponNo)
+	{
+		_player = GetComponent<Player>();
+		weaponCategory[_currentWeapon].gameObject.SetActive(false);
+
+		_currentWeapon = weaponNo-1;
+		weaponCategory[_currentWeapon].gameObject.SetActive(true);
+		_player.activeWeapon = _currentWeapon;
+	}
+	
 }
