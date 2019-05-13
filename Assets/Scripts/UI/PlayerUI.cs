@@ -55,14 +55,6 @@ public class PlayerUI : NetworkBehaviour {
         elementController = player.GetComponent<ElementController>();
     }
 
-
-    public void RefreshInformation()
-    {
-        information = elementController.UIInformation;
-        informationUI.text = information;
-    }
-
-
 	// Use this for initialization
 	void Start () {
         PauseMenu.IsOn = false;
@@ -75,7 +67,6 @@ public class PlayerUI : NetworkBehaviour {
 	// Update is called once per frame 
 	void Update () {
         RefreshUI();
-        RefreshInformation();
         SetHPAmount(player.GetCurrentHP());
         if (player != null)
             weapon = player.GetComponentInChildren<Weapon>();

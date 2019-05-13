@@ -56,6 +56,9 @@ public class TestingOnMouseOver : MonoBehaviour, IPointerEnterHandler, IPointerE
             case "Radar":
                 techTreeInformation.text = "Radar\nNuclear+Nuclear+Wood\nUnlock ultimate power!";
                 return;
+            case "QuestionMark" :
+                techTreeInformation.text = "Coming in the future!";
+                return;
             default: return;
         }
             

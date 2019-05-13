@@ -3568,8 +3568,8 @@ MonoBehaviour:
     fireNeeded: 1
   - techNumber: 1
     buildingAmount: 0
-    woodNeeded: 1
-    waterNeeded: 1
+    woodNeeded: 0
+    waterNeeded: 0
     fireNeeded: 3
   - techNumber: 2
     buildingAmount: 0
@@ -3618,7 +3618,6 @@ MonoBehaviour:
   - {fileID: 1042295966550514, guid: bacc69aa06bd850429249e035de9c87f, type: 2}
   - {fileID: 1918496481609184, guid: a59e9bda1365fd04491bfb0a8318637d, type: 2}
   - {fileID: 1873730766571410, guid: 1aecff914a02bba4a89f9b409db51996, type: 2}
-  UIInformation: 
   teamNo: 0
 --- !u!114 &114402198009584326
 MonoBehaviour:

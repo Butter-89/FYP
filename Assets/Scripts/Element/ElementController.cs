@@ -79,8 +79,6 @@ public class ElementController : NetworkBehaviour
     public System.Collections.Generic.List<string> elements;
 
     public GameObject[] elementTypes; //1 - wood; 2 - water; 3 - fire
-    
-    public string UIInformation;
 
     private bool flag = true;
 
@@ -105,14 +103,7 @@ public class ElementController : NetworkBehaviour
         //Debug.Log(buildingPool.transform.name);
         
         //Debug.Log(transform.name+" "+buildingPool.transform.name);
-        if (isServer)
-        {
-            UIInformation = "Is server";
-        }
-        if (isClient)
-        {
-            UIInformation += " Is client";
-        }
+        
 
     }
 
@@ -206,11 +197,6 @@ public class ElementController : NetworkBehaviour
     private void FixedUpdate()
     {
         UpdateTechBuildingAmount();
-    }
-
-    public void SetUIInformation(string _information)
-    {
-        UIInformation = _information;
     }
 
 
