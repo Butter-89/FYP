@@ -92,7 +92,18 @@ public class TechManager : NetworkBehaviour {
 		//Debug.Log(buildingPool.transform.name+"'s techLevel= "+techLevel);
 		//Debug.Log("Max weapon level: "+techLevel);
 		CmdUpgradeWeapon(techLevel);
-		_player.CmdUpdateWeapon(techLevel); 
+		
+		if (isClient && !isServer)
+		{
+			Debug.Log("Client update weapon");
+			_player.CmdUpdateWeapon(techLevel);
+			_player.UpdateWeapon(techLevel);
+		}
+		else if (isServer)
+		{
+			Debug.Log("Server client update weapon");
+			_player.RpcUpdateWeapon(techLevel);
+		}
 	}
 	
 

@@ -226,11 +226,18 @@ public class Player : NetworkBehaviour
     public void CmdUpdateWeapon(int weapon)
     {
         //activeWeapon = weapon;
-        RpcUpdateWeapon(weapon);
+        //RpcUpdateWeapon(weapon);
+        activeWeapon = weapon;
+        for (int i = 1; i < playerAnimator.layerCount; i++)
+        {
+            //Debug.Log("Animator layer "+playerAnimator.GetLayerName(i));
+            playerAnimator.SetLayerWeight(i,0);
+        }
+        playerAnimator.SetLayerWeight(1+activeWeapon,1);
     }
 
     [ClientRpc]
-    private void RpcUpdateWeapon(int weapon)
+    public void RpcUpdateWeapon(int weapon)
     {
         activeWeapon = weapon;
         for (int i = 1; i < weapons.Length+1; i++)
@@ -239,6 +246,16 @@ public class Player : NetworkBehaviour
         }
         playerAnimator.SetLayerWeight(1+activeWeapon,1);
         
+    }
+
+    public void UpdateWeapon(int weapon)
+    {
+        activeWeapon = weapon;
+        for (int i = 1; i < weapons.Length+1; i++)
+        {
+            playerAnimator.SetLayerWeight(i,0);
+        }
+        playerAnimator.SetLayerWeight(1+activeWeapon,1);
     }
     /*
    [Command]
