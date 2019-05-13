@@ -91,6 +91,12 @@
     <Compile Include="Assets\JoinGame.cs" />
     <Compile Include="Assets\LinkToNetworkManager.cs" />
     <Compile Include="Assets\Models\AtomicBomb\RotateCam.cs" />
+    <Compile Include="Assets\PowerUp\Scripts\CustomizablePowerUp.cs" />
+    <Compile Include="Assets\PowerUp\Scripts\PowerUpManager.cs" />
+    <Compile Include="Assets\PowerUp\Scripts\PowerUpRotation.cs" />
+    <Compile Include="Assets\PowerUp\Scripts\ScaleParticles.cs" />
+    <Compile Include="Assets\PowerUp\Scripts\TakeablePowerUp.cs" />
+    <Compile Include="Assets\PowerUp\Scripts\Utility\Singleton.cs" />
     <Compile Include="Assets\RoomListItem.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\MenuSceneLoader.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\SceneAndURLLoader.cs" />
